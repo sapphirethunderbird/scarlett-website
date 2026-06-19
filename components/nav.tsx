@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BrandMark } from "./anomaly-mark";
 import { ThemeToggle } from "./theme-toggle";
 import styles from "./nav.module.css";
 
@@ -28,7 +27,10 @@ export function Nav() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <Link className={styles.brand} href="/#top" aria-label="Home">
-        <BrandMark />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo/full-color.svg" alt="" aria-hidden="true" className={styles.logoLight} width={26} height={26} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo/mono-orange.svg" alt="" aria-hidden="true" className={styles.logoDark} width={26} height={26} />
         <span>Scarlett Whisnant</span>
       </Link>
       <div className={styles.right}>

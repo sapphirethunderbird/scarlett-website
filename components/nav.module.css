@@ -33,6 +33,24 @@
   color: var(--text);
 }
 
+/* Logo: show full-color in light mode, mono-orange in dark mode */
+.logoLight {
+  display: none;
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+.logoDark {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+:global([data-theme="light"]) .logoLight { display: block; }
+:global([data-theme="light"]) .logoDark  { display: none; }
+
 .right {
   display: flex;
   align-items: center;
