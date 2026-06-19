@@ -1,0 +1,33 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* The crescent: a ring with a same-as-background disc cutting into it.
+   Stays the signal color in both themes (§7); the cut tracks the field. */
+.ring {
+  fill: var(--accent);
+}
+
+.cut {
+  fill: var(--bg);
+  transition: fill 0.25s ease;
+}

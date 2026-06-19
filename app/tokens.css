@@ -1,0 +1,90 @@
+/* ============================================================================
+   Design Manual §2 — Semantic token layer
+   Components reference ONLY semantic tokens, never raw brand colors.
+   Dark "Void" is canonical/default; light "Threshold" is a true peer.
+   ============================================================================ */
+
+:root {
+  /* §2.1 Raw brand palette — fixed, never reassigned per theme */
+  --void: #080b14;
+  --ghost: #f0ede8;
+  --signal: #e8541a;
+  --depth: #1a3a8f;
+
+  /* Typography families */
+  --display: var(--font-syne), "Syne", sans-serif;
+  --body: var(--font-inter), "Inter", sans-serif;
+  --mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+
+  /* §4.1 Type scale (~1.25 modular) */
+  --step--1: 0.8rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.563rem;
+  --step-3: 1.953rem;
+  --step-4: 2.441rem;
+  --step-5: 3.815rem;
+
+  /* §5 Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* §5 Radius + layout */
+  --radius: 6px;
+  --radius-sm: 3px;
+  --content: 1080px;
+}
+
+/* §2.3 Dark theme — "Void" (default) */
+:root,
+[data-theme="dark"] {
+  --bg: #080b14;
+  --surface: #0e1320;
+  --surface-2: #151b2b;
+  --border: rgba(240, 237, 232, 0.1);
+  --text: #f0ede8;
+  --text-muted: #a7aec0;
+  --accent: #e8541a;
+  --accent-hover: #ff6a33;
+  --accent-ink: #e8541a; /* signal on void ≈ 5.2:1, safe as text */
+  --secondary: #5b7fe0; /* depth, lightened to read on void */
+  --focus: #ff6a33;
+  --shadow: none; /* dark elevates via border + faint glow, not shadow */
+
+  /* Liminal atmosphere (fog over the void) */
+  --fog: radial-gradient(70% 50% at 75% 12%, rgba(26, 58, 143, 0.3), transparent 70%),
+    radial-gradient(60% 50% at 10% 90%, rgba(26, 58, 143, 0.18), transparent 70%),
+    radial-gradient(40% 30% at 50% 50%, rgba(232, 84, 26, 0.05), transparent 70%);
+  --nav-scrolled-bg: rgba(8, 11, 20, 0.85);
+  --nav-top-bg: linear-gradient(var(--void), rgba(8, 11, 20, 0));
+}
+
+/* §2.4 Light theme — "Threshold" (a true peer, not an inversion) */
+[data-theme="light"] {
+  --bg: #f5f2ec; /* warm off-white — echoes ghost. NEVER pure white. */
+  --surface: #ffffff;
+  --surface-2: #ece8e0;
+  --border: rgba(8, 11, 20, 0.12);
+  --text: #11151f;
+  --text-muted: #5a6275;
+  --accent: #e8541a; /* fills, large display, crescent, icon strokes */
+  --accent-hover: #c2430d;
+  --accent-ink: #b23f0e; /* darkened signal for small/body text */
+  --secondary: #1a3a8f; /* depth, used raw — legible on threshold */
+  --focus: #b23f0e;
+  --shadow: 0 2px 8px rgba(8, 11, 20, 0.06), 0 8px 24px rgba(8, 11, 20, 0.08);
+
+  /* Threshold-side atmosphere: same world, daylight at the boundary */
+  --fog: radial-gradient(70% 50% at 75% 12%, rgba(26, 58, 143, 0.08), transparent 70%),
+    radial-gradient(60% 50% at 10% 90%, rgba(26, 58, 143, 0.05), transparent 70%),
+    radial-gradient(40% 30% at 50% 50%, rgba(232, 84, 26, 0.04), transparent 70%);
+  --nav-scrolled-bg: rgba(245, 242, 236, 0.85);
+  --nav-top-bg: linear-gradient(var(--bg), rgba(245, 242, 236, 0));
+}

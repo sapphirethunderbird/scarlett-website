@@ -1,0 +1,52 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 46px;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.body {
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  color: color-mix(in srgb, var(--text) 88%, var(--bg));
+}
+
+.body b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.pull {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--text);
+  border-left: 2px solid var(--accent);
+  padding-left: 22px;
+}
+
+.beliefs {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.belief {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+}
+
+.belief span {
+  color: var(--accent-ink);
+}
