@@ -1,0 +1,6 @@
+# Copy this to `.gitignore` inside the backup repo (/opt/scarlett-config-backup).
+# Never let a cleartext .env be tracked — only env.enc is committed.
+.env
+*.env
+!env.enc
+keys.txt
