@@ -45,10 +45,12 @@ export function HeroMark() {
           />
         ))}
         {/* the 9th cell: the anomaly, a crescent */}
-        <g className={styles.crescent} transform="translate(245,245)">
-          <circle className={styles.halo} r="46" />
-          <circle className={styles.ring} r="35" />
-          <circle className={styles.cut} cx="13" cy="-11" r="30" />
+        <g transform="translate(245,245)">
+          <g className={styles.crescent}>
+            <circle className={styles.halo} r="46" />
+            <circle className={styles.ring} r="35" />
+            <circle className={styles.cut} cx="-13" cy="-11" r="30" />
+          </g>
         </g>
       </svg>
     </div>
