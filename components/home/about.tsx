@@ -11,7 +11,7 @@ export function About() {
         <div className={`${styles.col} reveal`}>
           <p className={styles.pull}>
             I&apos;m not the person who&apos;s sure. I&apos;m the person who
-            tries when it matters — even when it looks hopeless — and then I make
+            tries when it matters, even when it looks hopeless, and then I make
             it mine.
           </p>
           <div className={styles.beliefs}>
@@ -30,19 +30,19 @@ export function About() {
           <p className={styles.body}>
             I moved to Japan at eleven with no Japanese, went through public
             school entirely in Japanese, and got into a national university the
-            domestic way — no exchange-student lane.{" "}
+            domestic way, no exchange-student lane.{" "}
             <b>I get fluent fast in systems that weren&apos;t built for me.</b>
           </p>
           <p className={styles.body}>
             That&apos;s the through-line in everything I make: human
             communication, institutional failure, and AI as a tool for handing
-            people back some agency. I build the model and the interface — and
-            when my understanding deepens, I go back and rebuild my earlier work
+            people back some agency. I build the model and the interface. When
+            my understanding deepens, I go back and rebuild my earlier work
             instead of hiding it.
           </p>
           <p className={styles.body}>
-            Off the screen, I run. I started from genuinely terrible — the
-            dreaded PE distance run was my nemesis — and picked it up anyway
+            Off the screen, I run. I started from genuinely terrible. The
+            dreaded PE distance run was my nemesis, but I picked it up anyway
             because it felt impossible. Training through a knee injury toward a
             5K now, a marathon eventually. Same move as everything else here:{" "}
             <b>pick the hard thing, start from zero, make it mine.</b>

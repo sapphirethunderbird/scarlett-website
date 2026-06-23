@@ -6,7 +6,7 @@ export function Contact() {
       <h2 className={styles.h2}>Let&apos;s talk.</h2>
       <p className={styles.sub}>
         Looking for an early-career role where technical depth meets human-facing
-        work. US citizen — no sponsorship needed.
+        work. US citizen, no sponsorship needed.
       </p>
       <div className={styles.links}>
         <a

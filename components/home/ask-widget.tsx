@@ -81,7 +81,7 @@ export function AskWidget() {
         </div>
         <div className={styles.log} ref={logRef} aria-live="polite">
           <div className={`${styles.msg} ${styles.bot}`}>
-            Hi — I&apos;m an AI that answers questions about Scarlett&apos;s work
+            Hi! I&apos;m an AI that answers questions about Scarlett&apos;s work
             and the way she thinks. Recruiter, curious, or just poking around?
             Ask me anything.
           </div>
