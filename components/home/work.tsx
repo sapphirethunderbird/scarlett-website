@@ -1,4 +1,7 @@
+import Link from "next/link";
 import styles from "./work.module.css";
+
+type ProjectLink = { href: string; label: string; internal?: boolean };
 
 type Project = {
   idx: string;
@@ -7,7 +10,8 @@ type Project = {
   body: string;
   stack: string[];
   status: string;
-  link: { href: string; label: string };
+  link: ProjectLink;
+  links?: ProjectLink[];
 };
 
 const PROJECTS: Project[] = [
@@ -22,6 +26,13 @@ const PROJECTS: Project[] = [
       href: "https://github.com/sapphirethunderbird/burnout_predictor",
       label: "GitHub →",
     },
+    links: [
+      {
+        href: "/blog/burnout-predictor-in-retrospect",
+        label: "Read the retrospect →",
+        internal: true,
+      },
+    ],
   },
   {
     idx: "/02",
@@ -78,6 +89,23 @@ export function Work() {
               <a href={p.link.href} target="_blank" rel="noopener">
                 {p.link.label}
               </a>
+              {p.links?.map((l) =>
+                l.internal ? (
+                  <Link key={l.href} href={l.href} className={styles.extraLink}>
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener"
+                    className={styles.extraLink}
+                  >
+                    {l.label}
+                  </a>
+                ),
+              )}
             </div>
           </article>
         ))}

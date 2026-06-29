@@ -1,0 +1,164 @@
+.article {
+  max-width: 72ch;
+  margin: 0 auto;
+}
+
+/* ---- Header ---- */
+.head {
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: var(--space-4) 0 0;
+  color: var(--text);
+  overflow-wrap: break-word;
+}
+
+.summary {
+  margin-top: var(--space-4);
+  font-size: var(--step-1);
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+.project {
+  margin-top: var(--space-6);
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.project a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.project a:hover {
+  border-color: var(--accent);
+}
+
+/* ---- Prose: styles for rendered markdown ---- */
+.prose {
+  color: color-mix(in srgb, var(--text) 88%, var(--bg));
+  font-size: var(--step-0);
+  line-height: 1.75;
+}
+
+.prose > * + * {
+  margin-top: var(--space-6);
+}
+
+.prose h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-top: var(--space-12);
+  scroll-margin-top: 96px;
+}
+
+.prose h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: var(--step-1);
+  color: var(--text);
+  margin-top: var(--space-8);
+  scroll-margin-top: 96px;
+}
+
+.prose p {
+  max-width: 68ch;
+}
+
+.prose strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.prose a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.prose a:hover {
+  border-color: var(--accent);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-6);
+  max-width: 66ch;
+}
+
+.prose li + li {
+  margin-top: var(--space-2);
+}
+
+.prose li::marker {
+  color: var(--accent-ink);
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-4);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+
+.prose pre {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+/* Inside a highlighted code block, the inline code reset shouldn't apply. */
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ---- Footer ---- */
+.foot {
+  margin-top: var(--space-16);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: var(--step--1);
+}
+
+.foot a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.foot a:hover {
+  border-color: var(--accent);
+}
