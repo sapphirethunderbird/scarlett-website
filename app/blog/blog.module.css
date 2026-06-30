@@ -1,3 +1,58 @@
+/* ── Featured rail ─────────────────────────────────────────────── */
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-12) var(--space-8);
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardBody {
+  padding-top: var(--space-6);
+}
+
+.cardHero {
+  max-width: 100%;
+}
+
+.cardTitle {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  margin: var(--space-2) 0 var(--space-3);
+  color: var(--text);
+  transition: color 0.2s ease;
+  text-wrap: balance;
+}
+
+.cardHero .cardTitle {
+  font-size: var(--step-4);
+}
+
+.card:hover .cardTitle {
+  color: var(--accent-ink);
+}
+
+/* ── More writing ──────────────────────────────────────────────── */
+.more {
+  margin-top: var(--space-24);
+}
+
+.moreHead {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -76,5 +131,8 @@
   }
   .arrow {
     display: none;
+  }
+  .featuredGrid {
+    grid-template-columns: 1fr;
   }
 }

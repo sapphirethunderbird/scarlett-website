@@ -15,6 +15,11 @@ export type ArticleMeta = {
   /** Optional project this piece is a retrospective of. */
   project?: string;
   projectHref?: string;
+  /** Optional cover image path under `public/` (e.g. "/articles/foo.jpg"). */
+  image?: string;
+  imageAlt?: string;
+  /** Marks a piece for the featured rail on the writing index. */
+  featured?: boolean;
 };
 
 export type Article = ArticleMeta & {
@@ -35,6 +40,9 @@ function readArticleFile(filename: string): Article {
     readingTime: readingTime(content).text,
     project: data.project ? String(data.project) : undefined,
     projectHref: data.projectHref ? String(data.projectHref) : undefined,
+    image: data.image ? String(data.image) : undefined,
+    imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+    featured: Boolean(data.featured),
     content,
   };
 }
@@ -47,6 +55,14 @@ export function getAllArticles(): Article[] {
     .filter((f) => f.endsWith(".md"))
     .map(readArticleFile)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+/** Featured articles (frontmatter `featured: true`), newest first.
+ *  Falls back to the single newest article so the rail is never empty. */
+export function getFeaturedArticles(): Article[] {
+  const all = getAllArticles();
+  const flagged = all.filter((a) => a.featured);
+  return flagged.length ? flagged : all.slice(0, 1);
 }
 
 /** A single article by slug, or `null` if it doesn't exist. */
