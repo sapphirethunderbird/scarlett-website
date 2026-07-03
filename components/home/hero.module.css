@@ -50,6 +50,29 @@
   letter-spacing: 0.04em;
 }
 
+.cta {
+  display: inline-block;
+  margin-top: 30px;
+  background: var(--accent);
+  /* dark ink on signal ≈ 5.5:1 in both themes; white on signal fails AA */
+  color: var(--void);
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 13px 26px;
+  border-radius: 9px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
 .markWrap {
   display: flex;
   justify-content: center;

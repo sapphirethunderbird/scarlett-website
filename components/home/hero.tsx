@@ -20,6 +20,9 @@ export function Hero() {
             Scarlett Whisnant — software, AI, and the questions people would
             rather avoid.
           </p>
+          <a href="#contact-form" className={styles.cta}>
+            Get in touch
+          </a>
         </div>
         <div className={styles.markWrap}>
           <HeroMark />

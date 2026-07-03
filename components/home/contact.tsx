@@ -1,3 +1,4 @@
+import { ContactForm } from "./contact-form";
 import styles from "./contact.module.css";
 
 export function Contact() {
@@ -19,10 +20,8 @@ export function Contact() {
         <a className={styles.todo} href="#" aria-disabled="true">
           LinkedIn · soon
         </a>
-        <a className={styles.todo} href="#" aria-disabled="true">
-          Email · soon
-        </a>
       </div>
+      <ContactForm />
     </section>
   );
 }

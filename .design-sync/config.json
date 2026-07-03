@@ -1,0 +1,26 @@
+{
+  "projectId": "d54941e0-5449-4b97-89d1-80e5e6d0986a",
+  "shape": "package",
+  "pkg": "scarlett-website",
+  "srcDir": "components",
+  "cssEntry": ".design-sync/combined.css",
+  "runtimeFontPrefixes": ["Syne", "Inter", "JetBrains Mono"],
+  "buildCmd": "node .ds-sync/package-build.mjs --config .design-sync/config.json --node-modules ./node_modules --entry ./components/index.ts --out ./ds-bundle",
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "Nav": { "cardMode": "single", "primaryStory": "Default" }
+  },
+  "componentSrcMap": {
+    "RevealObserver": null,
+    "Hero": "components/home/hero.tsx",
+    "About": "components/home/about.tsx",
+    "Work": "components/home/work.tsx",
+    "Contact": "components/home/contact.tsx",
+    "AskWidget": "components/home/ask-widget.tsx",
+    "Nav": "components/nav.tsx",
+    "Footer": "components/footer.tsx",
+    "ThemeToggle": "components/theme-toggle.tsx",
+    "BrandMark": "components/anomaly-mark.tsx",
+    "HeroMark": "components/anomaly-mark.tsx"
+  }
+}

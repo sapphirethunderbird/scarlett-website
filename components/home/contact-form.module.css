@@ -1,0 +1,110 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.field input,
+.field textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 0.95rem;
+  padding: 11px 14px;
+  border-radius: 9px;
+  transition: border-color 0.2s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.field input:disabled,
+.field textarea:disabled {
+  opacity: 0.5;
+}
+
+/* Honeypot — visually removed but still in the DOM for bots to find. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.submit {
+  align-self: flex-start;
+  background: var(--accent);
+  /* dark ink on signal ≈ 5.5:1 in both themes; white on signal fails AA */
+  color: var(--void);
+  border: none;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.82rem;
+  padding: 12px 24px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.error {
+  color: var(--accent-ink);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.success {
+  max-width: 520px;
+  margin: 40px auto 0;
+  font-size: 1.05rem;
+  color: var(--text);
+}
