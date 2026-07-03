@@ -22,7 +22,7 @@ ENV_FILE="${ENV_FILE:-}"
 if [[ -z "$ENV_FILE" && -f "$UNIT" ]]; then
   ENV_FILE="$(grep -E '^\s*EnvironmentFile=' "$UNIT" | tail -n1 | cut -d= -f2- | tr -d ' ' || true)"
 fi
-ENV_FILE="${ENV_FILE:-/opt/scarlett-web/.env}"
+ENV_FILE="${ENV_FILE:-/home/scarlett/scarlett-web.env}"
 
 # age key location for SOPS (private key lives ONLY on the server + an off-server copy).
 export SOPS_AGE_KEY_FILE="${SOPS_AGE_KEY_FILE:-$HOME/.config/sops/age/keys.txt}"

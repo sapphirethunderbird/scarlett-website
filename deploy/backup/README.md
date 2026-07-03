@@ -77,12 +77,15 @@ git clone git@github.com:<you>/scarlett-config-backup.git /opt/scarlett-config-b
 mkdir -p ~/.config/sops/age && cp /your/offsite/keys.txt ~/.config/sops/age/keys.txt
 cd /opt/scarlett-config-backup
 
-# decrypt secrets back into place
-SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt sops --decrypt env.enc > /opt/scarlett-web/.env
-
-# restore config
+# restore config first — the unit declares the EnvironmentFile= path
 sudo cp Caddyfile /etc/caddy/Caddyfile
 sudo cp scarlett-web.service /etc/systemd/system/scarlett-web.service
+
+# decrypt secrets back into the path the unit points at (currently
+# /home/scarlett/scarlett-web.env — confirm with: grep EnvironmentFile= scarlett-web.service)
+SOPS_AGE_KEY_FILE=~/.config/sops/age/keys.txt sops --decrypt env.enc > /home/scarlett/scarlett-web.env
+chmod 600 /home/scarlett/scarlett-web.env
+
 sudo systemctl daemon-reload && sudo systemctl enable --now scarlett-web
 sudo systemctl reload caddy
 ```
