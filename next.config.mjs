@@ -11,6 +11,18 @@ const nextConfig = {
       "./node_modules/postal-mime/**/*",
       "./node_modules/standardwebhooks/**/*",
     ],
+    // better-sqlite3 is a native module the tracer also misses. The hub
+    // ("/personality") reads the DB too, for its live running teaser.
+    "/personality/running": [
+      "./node_modules/better-sqlite3/**/*",
+      "./node_modules/bindings/**/*",
+      "./node_modules/file-uri-to-path/**/*",
+    ],
+    "/personality": [
+      "./node_modules/better-sqlite3/**/*",
+      "./node_modules/bindings/**/*",
+      "./node_modules/file-uri-to-path/**/*",
+    ],
   },
 };
 

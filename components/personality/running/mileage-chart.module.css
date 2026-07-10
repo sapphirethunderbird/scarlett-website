@@ -1,0 +1,66 @@
+.figure {
+  margin: 0;
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.captionRange {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bar {
+  fill: var(--accent);
+}
+
+.barCurrent {
+  fill: var(--accent-hover);
+}
+
+.barEmpty {
+  fill: var(--border);
+}
+
+.bar:hover,
+.barCurrent:hover {
+  fill: color-mix(in srgb, var(--accent) 80%, var(--text));
+}
+
+.barLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  fill: var(--text);
+}
+
+.axisText {
+  font-family: var(--mono);
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+
+.gridline {
+  stroke: var(--border);
+  stroke-dasharray: 3 5;
+}
+
+.baseline {
+  stroke: var(--border);
+}

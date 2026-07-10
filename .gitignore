@@ -12,3 +12,6 @@ next-env.d.ts
 
 # Design sync generated output
 /ds-bundle/
+
+# Local SQLite (runs dashboard dev data)
+/data/

@@ -1,0 +1,188 @@
+.manifesto {
+  max-width: 58ch;
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+  margin-bottom: var(--space-12);
+}
+
+.doorways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .doorways {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+/* ---- visual band ---------------------------------------------------- */
+
+.visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+/* music: three fanned covers, a still-life of the Cover Flow inside.
+   Raw brand colors on purpose — this is artwork, not chrome (see article-cover). */
+.coverFan {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 500px;
+  display: grid;
+  place-items: center;
+}
+
+.fanCover {
+  position: absolute;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(240, 237, 232, 0.14);
+}
+
+.fanCover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.fanCover {
+  background-size: cover;
+  overflow: hidden;
+}
+
+.fanLeft {
+  transform: translateX(-72%) rotateY(48deg) scale(0.9);
+}
+
+.fanCenter {
+  transform: translateZ(30px);
+  z-index: 1;
+}
+
+.fanRight {
+  transform: translateX(72%) rotateY(-48deg) scale(0.9);
+}
+
+.card:hover .fanCenter {
+  transform: translateZ(42px);
+}
+
+.fanCover {
+  transition: transform 0.3s ease;
+}
+
+/* running: sparkline */
+.sparkline {
+  width: 70%;
+  height: 45%;
+  color: var(--accent);
+  overflow: visible;
+}
+
+/* japan: a strip of journey frames, like film held to the light */
+.filmStrip {
+  display: flex;
+  gap: 6px;
+  width: 82%;
+  padding: 8px;
+  background: rgba(8, 11, 20, 0.55);
+  border-radius: var(--radius-sm);
+}
+
+.filmFrame {
+  flex: 1;
+  aspect-ratio: 3 / 2;
+  border-radius: 2px;
+  background-size: cover;
+  border: 1px solid rgba(240, 237, 232, 0.14);
+}
+
+/* ---- text block ------------------------------------------------------ */
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-6);
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.idx {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent-ink);
+}
+
+.cardTitle {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.proof {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.body {
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+  font-size: 0.95rem;
+  margin-top: var(--space-2);
+}
+
+.tease {
+  margin-top: var(--space-3);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--accent-ink);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.enter {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent-ink);
+}
+
+.card:hover .enter {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

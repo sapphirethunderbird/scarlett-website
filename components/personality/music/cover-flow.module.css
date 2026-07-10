@@ -1,0 +1,409 @@
+.player {
+  --cover: 210px;
+  --side-base: 78%; /* first side cover's distance from center, in cover widths */
+  --side-step: 32%; /* each additional cover beyond the first */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .player {
+    --cover: 138px;
+  }
+}
+
+/* ---- toolbar: the brushed-metal tribute ------------------------------ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(
+    180deg,
+    var(--surface) 0px,
+    var(--surface-2) 1px,
+    var(--surface) 2px
+  );
+  box-shadow: var(--shadow);
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.transportBtn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.transportBtn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.transportBtn:hover:not(:disabled) {
+  color: var(--accent-ink);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.transportBtn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.transportBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.playBtn {
+  width: 44px;
+  height: 44px;
+}
+
+.playBtn svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* the LCD: iTunes' little status window, re-set in our tokens */
+.lcd {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-2) var(--space-4) calc(var(--space-2) + 5px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  font-family: var(--mono);
+  text-align: center;
+  overflow: hidden;
+}
+
+.lcdTop {
+  font-size: 0.78rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.lcdBottom {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.lcdProgress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.25s linear;
+}
+
+.toolbarSpacer {
+  width: 124px; /* mirrors the transport, keeps the LCD centered */
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .toolbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .toolbarSpacer {
+    display: none;
+  }
+  .lcd {
+    flex-basis: 100%;
+    order: 2;
+  }
+}
+
+/* ---- the flow --------------------------------------------------------- */
+
+.stage {
+  position: relative;
+  perspective: 1200px;
+  padding: var(--space-8) 0 var(--space-4);
+  touch-action: pan-y; /* horizontal gestures are ours, vertical stays the page's */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  border-radius: var(--radius);
+}
+
+.stage:active {
+  cursor: grabbing;
+}
+
+.covers {
+  position: relative;
+  height: calc(var(--cover) * 1.45); /* cover + a slice of reflection */
+  transform-style: preserve-3d;
+}
+
+.cover {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: var(--cover);
+  height: var(--cover);
+  margin-left: calc(var(--cover) / -2);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transform: translateX(calc(var(--sign) * (var(--side-base) + (var(--abs) - 1) * var(--side-step))))
+    translateZ(-90px) rotateY(calc(var(--sign) * -62deg));
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.coverActive {
+  transform: translateX(0) translateZ(120px) rotateY(0deg);
+}
+
+.art,
+.reflection {
+  position: absolute;
+  inset-inline: 0;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.art {
+  top: 0;
+  border: 1px solid rgba(240, 237, 232, 0.14);
+  box-shadow: 0 6px 24px rgba(8, 11, 20, 0.45);
+  background: var(--surface-2);
+}
+
+.art img,
+.reflection img,
+.artFallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* flipped copy below; the mask fades it out — the classic floor reflection */
+.reflection {
+  top: calc(100% + 2px);
+  transform: scaleY(-1);
+  opacity: 0.4;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* gradient stand-in when Apple has no artwork */
+.artFallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ghost);
+}
+
+.artFallback span:first-child {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* caption under the flow, like the title readout under iTunes' stage */
+.caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-6);
+  text-align: center;
+  min-height: 4.6rem;
+}
+
+.captionTitle {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  color: var(--text);
+}
+
+.captionMeta {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.captionNote {
+  font-size: 0.85rem;
+  color: var(--accent-ink);
+  font-style: italic;
+}
+
+.hint {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* ---- the source-list tribute ------------------------------------------ */
+
+.trackList {
+  list-style: none;
+  margin-top: var(--space-8);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.listHead,
+.row {
+  display: grid;
+  grid-template-columns: 2.4rem 1.4fr 1fr 1.2fr 3.4rem;
+  gap: var(--space-3);
+  align-items: center;
+  width: 100%;
+  padding: var(--space-2) var(--space-4);
+  text-align: left;
+}
+
+.listHead {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.row {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.15s ease;
+}
+
+.trackList li:last-child .row {
+  border-bottom: none;
+}
+
+/* iTunes zebra striping, but in tokens */
+.trackList li:nth-child(odd) .row {
+  background: color-mix(in srgb, var(--surface-2) 45%, transparent);
+}
+
+.row:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.rowActive,
+.trackList li .rowActive {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.rowNum {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  justify-content: center;
+}
+
+.speaker {
+  width: 12px;
+  height: 12px;
+  color: var(--accent-ink);
+}
+
+.rowName {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowArtistInline {
+  display: none;
+}
+
+.colArtist,
+.colAlbum {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.colTime {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .listHead,
+  .row {
+    grid-template-columns: 2rem 1fr 3.2rem;
+  }
+  .colArtist,
+  .colAlbum {
+    display: none;
+  }
+  .rowName {
+    white-space: normal;
+  }
+  .rowArtistInline {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+}

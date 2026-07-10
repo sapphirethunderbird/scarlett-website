@@ -1,0 +1,28 @@
+.progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 300; /* above the nav */
+    background: var(--accent);
+    transform-origin: 0 50%;
+    animation: journey-grow linear both;
+    animation-timeline: scroll(root);
+  }
+
+  @keyframes journey-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}

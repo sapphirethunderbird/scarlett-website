@@ -1,0 +1,220 @@
+.intro {
+  max-width: 58ch;
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+  margin-bottom: var(--space-12);
+}
+
+.sampleBadge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--accent-ink);
+  border: 1px dashed color-mix(in srgb, var(--accent) 50%, var(--border));
+  border-radius: 999px;
+  padding: 6px 14px;
+  width: fit-content;
+  margin-bottom: var(--space-8);
+}
+
+/* ---- hero stat tiles --------------------------------------------------- */
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.statValue {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: var(--step-4);
+  line-height: 1.1;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- records ----------------------------------------------------------- */
+
+.records {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.recordCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.recordLabel {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.recordValue {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.recordDetail {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ---- recent runs -------------------------------------------------------- */
+
+.recent {
+  margin-top: var(--space-12);
+}
+
+.recentHead {
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+.runList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.runRow {
+  display: grid;
+  grid-template-columns: 4.4rem 4.6rem 5.6rem 4.6rem 5rem 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+
+.runList li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.runDate,
+.runPace,
+.runDuration {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.runDistance {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.runEffort {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.dotOn,
+.dotOff {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dotOn {
+  background: var(--accent);
+}
+
+.dotOff {
+  background: var(--border);
+}
+
+.runRoute {
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+  font-size: 0.84rem;
+}
+
+.runNotes {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .statGrid,
+  .records {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .runRow {
+    grid-template-columns: 4.4rem 4.6rem 1fr;
+    row-gap: var(--space-1);
+  }
+  .runDuration,
+  .runEffort {
+    display: none;
+  }
+  .runRoute {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---- empty state -------------------------------------------------------- */
+
+.empty {
+  padding: var(--space-12) var(--space-6);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.emptyLead {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  margin-bottom: var(--space-3);
+}
+
+.emptyBody {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.emptyBody code {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent-ink);
+}

@@ -1,0 +1,14 @@
+.intro {
+  max-width: 58ch;
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+  margin-bottom: var(--space-12);
+}
+
+.credit {
+  margin-top: var(--space-6);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+}

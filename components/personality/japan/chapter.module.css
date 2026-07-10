@@ -1,0 +1,307 @@
+.chapter {
+  --ch: var(--accent);
+  --ch-ink: var(--accent-ink);
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: var(--space-8);
+  padding: var(--space-24) 0;
+  border-top: 1px solid var(--border);
+}
+
+.accentDepth {
+  --ch: var(--secondary);
+  --ch-ink: var(--secondary);
+}
+
+@media (max-width: 900px) {
+  .chapter {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: var(--space-16) 0;
+  }
+}
+
+/* ---- sticky rail: the chapter travels with you ------------------------- */
+
+.rail {
+  position: relative;
+}
+
+.railInner {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ch-ink);
+}
+
+.date {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.railLine {
+  width: 1px;
+  height: 72px;
+  background: linear-gradient(var(--ch), transparent);
+  margin-top: var(--space-2);
+}
+
+/* the "station mark" — a nod to numbered stops on a rail line */
+.stationMark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--ch);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ch-ink);
+  background: var(--bg);
+}
+
+@media (max-width: 900px) {
+  .railInner {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .railLine {
+    display: none;
+  }
+  .stationMark {
+    order: -1;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ---- chapter content ---------------------------------------------------- */
+
+.content {
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-6);
+  max-width: 24ch;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 58ch;
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+}
+
+/* ---- photos -------------------------------------------------------------- */
+
+.photos {
+  margin-top: var(--space-8);
+}
+
+.photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.photoImg,
+.photoPlaceholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--ghost);
+  background: rgba(8, 11, 20, 0.65);
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* parallax enhancement layer — scroll-driven browsers with motion allowed */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax {
+      animation: drift linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(calc(var(--depth) * 4.5rem));
+  }
+  to {
+    transform: translateY(calc(var(--depth) * -4.5rem));
+  }
+}
+
+@media (max-width: 720px) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .parallax {
+        animation-name: drift-mobile;
+      }
+    }
+  }
+  @keyframes drift-mobile {
+    from {
+      transform: translateY(calc(var(--depth) * 2.25rem));
+    }
+    to {
+      transform: translateY(calc(var(--depth) * -2.25rem));
+    }
+  }
+}
+
+/* ---- layout: full-bleed --------------------------------------------------
+   The photo escapes the content column and spans the viewport. */
+
+.layoutFullBleed .photos {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+}
+
+.layoutFullBleed .photo {
+  height: min(62vh, 560px);
+  border-radius: 0;
+}
+
+.layoutFullBleed .caption {
+  left: max(var(--space-4), calc(50vw - var(--content) / 2 + 28px));
+}
+
+/* ---- layout: split -------------------------------------------------------- */
+
+.layoutSplit .photos {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.layoutSplit .photo:first-child {
+  aspect-ratio: 4 / 3;
+}
+
+.layoutSplit .photo:nth-child(2) {
+  aspect-ratio: 3 / 4;
+  margin-top: var(--space-12);
+}
+
+@media (max-width: 720px) {
+  .layoutSplit .photos {
+    grid-template-columns: 1fr;
+  }
+  .layoutSplit .photo:nth-child(2) {
+    margin-top: 0;
+  }
+}
+
+/* ---- layout: stack --------------------------------------------------------
+   Photos stagger left/right down the page. */
+
+.layoutStack .photos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.layoutStack .photo {
+  aspect-ratio: 16 / 10;
+  width: min(82%, 640px);
+}
+
+.layoutStack .photo:nth-child(even) {
+  align-self: flex-end;
+}
+
+@media (max-width: 720px) {
+  .layoutStack .photo {
+    width: 100%;
+  }
+}
+
+/* ---- layout: polaroids -----------------------------------------------------
+   Instant-film frames, slightly askew. Frames stay ghost-white in both
+   themes on purpose — that's what the film looks like. */
+
+.layoutPolaroids .photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.layoutPolaroids .photo {
+  overflow: visible;
+  border-radius: 2px;
+  background: var(--ghost);
+  padding: 10px 10px 40px;
+  width: min(240px, 44%);
+  aspect-ratio: 3.4 / 4;
+  box-shadow: 0 10px 28px rgba(8, 11, 20, 0.35);
+}
+
+.layoutPolaroids .photo:nth-child(3n + 1) {
+  rotate: -2.5deg;
+}
+
+.layoutPolaroids .photo:nth-child(3n + 2) {
+  rotate: 1.8deg;
+  translate: 0 var(--space-6);
+}
+
+.layoutPolaroids .photo:nth-child(3n) {
+  rotate: -1deg;
+}
+
+.layoutPolaroids .photoPlaceholder,
+.layoutPolaroids .photoImg {
+  border-radius: 1px;
+}
+
+.layoutPolaroids .caption {
+  position: absolute;
+  inset-inline: 10px;
+  bottom: 10px;
+  background: none;
+  backdrop-filter: none;
+  color: #3a3f4d; /* pen on film — fixed like the frame itself */
+  text-align: center;
+  padding: 0;
+}
+
+@media (max-width: 720px) {
+  .layoutPolaroids .photo:nth-child(3n + 2) {
+    translate: 0;
+  }
+}
