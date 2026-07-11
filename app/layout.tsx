@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://scarlettwhisnant.com"),
-  title: "Scarlett Whisnant - builds for the people systems forgot",
+  title: "Scarlett Whisnant | Bilingual EN/JA developer building human-centered AI",
   description:
     "Bilingual builder of AI tools, from model to interface, for the people existing systems forgot to design for.",
   openGraph: {
