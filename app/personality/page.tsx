@@ -73,7 +73,7 @@ export default async function PersonalityHub() {
 
         <p className={`${styles.manifesto} reveal`}>
           Code is maybe a third of the story. This wing of the site holds the
-          rest — and because I can&apos;t help myself, each room is also a
+          rest, and because I can&apos;t help myself, each room is also a
           build: an exhibit about me, engineered like everything else here.
         </p>
 

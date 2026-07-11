@@ -313,7 +313,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
               <span className={styles.captionTitle}>{activeTrack.title}</span>
               <span className={styles.captionMeta}>
                 {activeTrack.artist}
-                {activeTrack.albumName ? ` — ${activeTrack.albumName}` : ""}
+                {activeTrack.albumName ? ` - ${activeTrack.albumName}` : ""}
                 {activeTrack.releaseYear ? ` · ${activeTrack.releaseYear}` : ""}
               </span>
               {activeTrack.note ? (

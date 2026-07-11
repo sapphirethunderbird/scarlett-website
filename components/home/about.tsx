@@ -4,7 +4,7 @@ export function About() {
   return (
     <section id="about">
       <div className="sec-head reveal">
-        <span className="eyebrow">01 — who</span>
+        <span className="eyebrow">01: who</span>
         <h2>The person behind the build</h2>
       </div>
       <div className={styles.grid}>
@@ -37,13 +37,13 @@ export function About() {
             That&apos;s the through-line in everything I make: human
             communication, institutional failure, and AI as a tool for handing
             people back some agency. I build the model and the interface. When
-            my understanding deepens, I go back and rebuild my earlier work
+            my understanding deepens, I go back and rebuild and reflect on my earlier work
             instead of hiding it.
           </p>
           <p className={styles.body}>
             Off the screen, I run. I started from genuinely terrible. The
             dreaded PE distance run was my nemesis, but I picked it up anyway
-            because it felt impossible. Training through a knee injury toward a
+            because it felt impossible. Training through scorching heat toward a
             5K now, a marathon eventually. Same move as everything else here:{" "}
             <b>pick the hard thing, start from zero, make it mine.</b>
           </p>

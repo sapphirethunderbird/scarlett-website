@@ -71,7 +71,7 @@ export function AskWidget() {
   return (
     <section id="ask" className={styles.section}>
       <div className="sec-head reveal">
-        <span className="eyebrow">03 — ask</span>
+        <span className="eyebrow">03: ask</span>
         <h2>Ask the site about me</h2>
       </div>
       <div className={`${styles.shell} reveal`}>

@@ -21,7 +21,7 @@ const PROJECTS: Project[] = [
     proof: "proof: I build AI from model to interface, and rebuild as I learn",
     body: "A local-first desktop app that reads facial expression from a live camera feed in real time and nudges you to step away when stress reads high. I trained the model, wired the pipeline, and built the GUI. I also rebuilt it after I caught a weight-loading bug by logging per-frame confidence. The rebuild is where I prove the growth rather than paper over it.",
     stack: ["Python", "PyTorch", "MobileNetV2", "FER2013", "OpenCV", "tkinter"],
-    status: "rebuilding in public",
+    status: "solo · open source",
     link: {
       href: "https://github.com/sapphirethunderbird/burnout_predictor",
       label: "GitHub →",
@@ -64,7 +64,7 @@ export function Work() {
   return (
     <section id="work">
       <div className="sec-head reveal">
-        <span className="eyebrow">02 — work</span>
+        <span className="eyebrow">02: work</span>
         <h2>Built, broken, rebuilt</h2>
       </div>
       <div className={styles.projects}>

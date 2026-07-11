@@ -13,12 +13,13 @@ export function Hero() {
             still exist?
           </h1>
           <p className={styles.lede}>
-            I build technology — <b>from model to interface</b> — for the people
+            I build technology <b>from model to interface</b> for the people
             existing systems forgot to design for.
           </p>
           <p className={styles.who}>
-            Scarlett Whisnant — software, AI, and the questions people would
-            rather avoid.
+            Scarlett Whisnant
+            <br />
+            Design, AI, and the questions people would rather avoid.
           </p>
           <a href="#contact-form" className={styles.cta}>
             Get in touch

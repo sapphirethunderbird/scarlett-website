@@ -11,9 +11,8 @@ import {
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
-  title: "Writing — Scarlett Whisnant",
-  description:
-    "Long-form retrospectives on what I built, broke, and rebuilt.",
+  title: "Writing | Scarlett Whisnant",
+  description: "Long-form retrospectives on what I built, broke, and rebuilt.",
 };
 
 export default function BlogIndex() {
@@ -30,7 +29,7 @@ export default function BlogIndex() {
       <section id="writing">
         <div className="sec-head reveal">
           <span className="eyebrow">writing</span>
-          <h2>Built, broken, rebuilt — in long form</h2>
+          <h2>Built, broken, rebuilt - in long form</h2>
         </div>
 
         {articles.length === 0 ? (

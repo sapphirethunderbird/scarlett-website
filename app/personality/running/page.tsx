@@ -68,7 +68,7 @@ function Dashboard({ stats }: { stats: RunStats }) {
     <>
       {stats.sampleData ? (
         <p className={`${styles.sampleBadge} reveal`}>
-          sample data — the schema is real, the log starts with the next run
+          sample data, the schema is real, the log starts with the next run
         </p>
       ) : null}
 
@@ -175,7 +175,7 @@ function RunRow({ run }: { run: Run }) {
       <span className={styles.runRoute}>
         {run.route}
         {run.notes ? (
-          <span className={styles.runNotes}> — {run.notes}</span>
+          <span className={styles.runNotes}> - {run.notes}</span>
         ) : null}
       </span>
     </li>

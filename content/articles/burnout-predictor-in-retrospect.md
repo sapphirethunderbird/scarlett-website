@@ -1,6 +1,6 @@
 ---
 title: "Burnout Predictor in Retrospect"
-summary: "Why I rebuilt a stress-detection app — and why the honest fix turned out to be cultural, not technical."
+summary: "Why I rebuilt a stress-detection app, and why the honest fix turned out to be cultural, not technical."
 date: "2026-06-29"
 project: "Burnout Predictor"
 projectHref: "https://github.com/sapphirethunderbird/burnout_predictor"

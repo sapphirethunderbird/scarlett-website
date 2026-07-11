@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!article) return {};
 
   return {
-    title: `${article.title} — Scarlett Whisnant`,
+    title: `${article.title} | Scarlett Whisnant`,
     description: article.summary,
     openGraph: {
       title: article.title,
