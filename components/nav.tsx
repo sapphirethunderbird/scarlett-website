@@ -55,6 +55,14 @@ export function Nav() {
         >
           GitHub ↗
         </a>
+        <a
+          className={styles.ghPill}
+          href="https://www.linkedin.com/in/scarlett-whisnant"
+          target="_blank"
+          rel="noopener"
+        >
+          LinkedIn ↗
+        </a>
       </div>
 
       <div className={styles.pill}>

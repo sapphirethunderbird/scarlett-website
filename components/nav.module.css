@@ -24,7 +24,7 @@
 }
 
 .side[data-side="left"] { left: 22px; }
-.side[data-side="right"] { right: 22px; }
+.side[data-side="right"] { right: 22px; gap: 8px; }
 
 @media (max-width: 780px) {
   .side { display: none; }
