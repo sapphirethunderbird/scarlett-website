@@ -28,7 +28,9 @@ The number of steps needed to achieve a specific task rendered the entire regist
 ### The Solution
 We created an updated version of the old registration system, with the goal of making the user experience more intuitive and efficient.
 ### The Result
-**THIS WAS NOT THE ROOT PROBLEM**<br>
+**THIS WAS NOT THE ROOT PROBLEM**
+
+
 After conducting user testing with faculty admins, we found that the faculty really didn't find our updated system to be very useful. It had handy features and all, but it didn't really "change their lives." It was the easy solution that barely scraped the surface of the real problem.
 ## The Real Deal
 ### The Problem
@@ -43,8 +45,10 @@ We designed a feedback system that targets all 3 major stakeholders, creating a 
 #### Expected Benefits
 **Admins**
 Admins, professors, and students all form closer bonds, resulting in a system that goes beyond feedback and creates trust.
+
 **Students**
 Students feel that their voices are heard and class becomes a pleasant experience.
+
 **Professors**
 Professors are empowered with their new knowledge of how students respond to their courses, resulting in better communication and more fulfillment in their work.
 # Takeaway
