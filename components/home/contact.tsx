@@ -17,8 +17,12 @@ export function Contact() {
         >
           GitHub ↗
         </a>
-        <a className={styles.todo} href="#" aria-disabled="true">
-          LinkedIn · soon
+        <a
+          href="https://linkedin.com/in/scarlett-whisnant"
+          target="_blank"
+          rel="noopener"
+        >
+          LinkedIn ↗
         </a>
       </div>
       <ContactForm />
