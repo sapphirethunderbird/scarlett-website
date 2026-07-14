@@ -1,4 +1,3 @@
-import { HeroMark } from "@/components/anomaly-mark";
 import styles from "./hero.module.css";
 
 export function Hero() {
@@ -26,7 +25,25 @@ export function Hero() {
           </a>
         </div>
         <div className={styles.markWrap}>
-          <HeroMark />
+          <div className={styles.photoWrap}>
+            <div className={styles.halo} />
+            <div className={styles.photoRing}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/scarlett.jpg"
+                alt="Scarlett Whisnant"
+                className={styles.photo}
+                width={340}
+                height={340}
+              />
+            </div>
+            <div className={styles.badge}>
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="var(--accent)" strokeWidth="2.2" />
+                <circle cx="15.5" cy="9.5" r="7.6" fill="var(--bg)" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </header>

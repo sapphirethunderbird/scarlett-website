@@ -72,6 +72,15 @@ section {
   position: relative;
 }
 
+/* Keep anchor targets clear of the floating nav pill */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+#contact-form {
+  scroll-margin-top: 100px;
+}
+
 .sec-head {
   display: flex;
   align-items: baseline;

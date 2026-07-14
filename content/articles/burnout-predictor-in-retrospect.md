@@ -4,7 +4,7 @@ summary: "Why I rebuilt a stress-detection app, and why the honest fix turned ou
 date: "2026-06-29"
 project: "Burnout Predictor"
 projectHref: "https://github.com/sapphirethunderbird/burnout_predictor"
-featured: true
+featured: false
 ---
 
 ## Where It Started
