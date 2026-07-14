@@ -28,7 +28,7 @@ The number of steps needed to achieve a specific task rendered the entire regist
 ### The Solution
 We created an updated version of the old registration system, with the goal of making the user experience more intuitive and efficient.
 ### The Result
-**THIS WAS NOT THE ROOT PROBLEM**
+**THIS WAS NOT THE ROOT PROBLEM**<br>
 After conducting user testing with faculty admins, we found that the faculty really didn't find our updated system to be very useful. It had handy features and all, but it didn't really "change their lives." It was the easy solution that barely scraped the surface of the real problem.
 ## The Real Deal
 ### The Problem
