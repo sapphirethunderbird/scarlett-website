@@ -30,7 +30,7 @@ export function Hero() {
             <div className={styles.photoRing}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/scarlett.jpg"
+                src="/scarlett.jpeg"
                 alt="Scarlett Whisnant"
                 className={styles.photo}
                 width={340}

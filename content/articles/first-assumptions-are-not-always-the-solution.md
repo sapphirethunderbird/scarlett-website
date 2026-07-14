@@ -57,7 +57,9 @@ DX is a process in which stakeholders come out with improved relationships with 
 
 # My Contribution
 My major contribution was becoming a driving force in our pivot. By the time we realized that our system was only addressing a surface level problem, we were one week away from our deadline. We were at the cross-roads: either keep on with our current system, or make drastic changes in one week.
+
 I knew we had to pivot, and I knew it wasn't going to be easy. So I started making a prototype (more like a proof of concept) for our new feedback system. It was far from perfect, but we were able to get feedback for our idea. Some team members were still concerned about what we could accomplish in less than a week. Their concerns were valid. But I kept on prototyping and sharing the results, as I knew that we were definitely onto something. After all this and a conversation with our professor 4 days before the deadline, we as a team decided to take the leap towards our new system.
+
 I'm not patting myself on the back for going against the grain. I'm not saying that it's ok to ditch your team when you think you have a better idea. What I am saying is that if you know something is the right thing to do, you need to inspire others to get on board, even if the right thing to do is hard. You may not get your message across on the first try, friction is a real phenomenon. You must have faith however, that your team is capable of going to the next level.
 
 [Official Press Release (Yamaguchi University)](https://www.yamaguchi-u.ac.jp/gss/news/blog/2026/01/19/57/index.html)

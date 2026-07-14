@@ -42,10 +42,7 @@ export function Nav() {
       <div className={styles.side} data-side="left">
         <Link className={styles.homeDot} href="/#top" aria-label="Home" onClick={close}>
           <span className={styles.homeDotFace}>
-            <svg width="40" height="40" viewBox="0 0 30 30" aria-hidden="true">
-              <circle cx="15" cy="12" r="4.4" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" />
-              <path d="M6.5 25 a8.5 7 0 0 1 17 0" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" />
-            </svg>
+             <img src="/scarlett.jpeg" alt="Home" width={40} height={40} className={styles.homeDotImg} />
           </span>
         </Link>
       </div>
