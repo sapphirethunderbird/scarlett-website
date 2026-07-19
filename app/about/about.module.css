@@ -1,0 +1,93 @@
+.title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  letter-spacing: -0.01em;
+}
+
+.story {
+  max-width: 72ch;
+}
+
+.chapter {
+  margin-top: var(--space-12);
+}
+
+.chapter:first-child {
+  margin-top: 0;
+}
+
+.marker {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.markerNum {
+  color: var(--accent-ink);
+}
+
+.markerLabel {
+  color: var(--text-muted);
+}
+
+.pull {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--text);
+  border-left: 2px solid var(--accent);
+  padding-left: 22px;
+  margin-bottom: var(--space-6);
+}
+
+.body {
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--text) 88%, var(--bg));
+}
+
+.body b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.link {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  color: var(--accent-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: var(--accent-hover);
+}
+
+.beliefs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.belief {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+}
+
+.belief span {
+  color: var(--accent-ink);
+}
