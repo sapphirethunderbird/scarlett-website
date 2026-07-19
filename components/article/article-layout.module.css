@@ -108,6 +108,13 @@
   color: var(--accent-ink);
 }
 
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
 .prose blockquote {
   border-left: 2px solid var(--accent);
   padding-left: var(--space-4);

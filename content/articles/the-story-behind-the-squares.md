@@ -45,17 +45,17 @@ I also made the grid 5x5, 4x4, and finally 3x3 to give more simplicity to the de
 This was the bottleneck of the logo. I needed something that had this "unique flavor", that represented my experience of existing in between worlds. The shape had to be different, not perfect, and reach outside of the boundaries of the other squares. 
 
 I got different advice on the shape, ranging from a teardrop to a weird shaped bean. I tried all of them, and nothing looked right.  I was rather persistent asking for feedback and advice on my iterations, but I had to get the input. I was banging my head on a wall in another dimension trying to get the right shape. This was when I realized that I was attempting to outsource meaning, and needed to make my own shapes.  **The beans are officially out!**
-![[Red Bean.jpg]]
+![A bean-shaped logo sketch that was scrapped](/articles/the-story-behind-the-squares/red-bean.jpg)
 
 After many failed attempts at something I liked, I happened to make a crescent shape out of a non-perfect circle. I kept tweaking the corners and the size little by little until I had it. **This was the one.**
-![[Original Squares.jpg]]
+![The squares grid with the crescent shape in the center](/articles/the-story-behind-the-squares/original-squares.jpg)
 ## Why the Void?
 This was also a decision after many failed attempts to make a color scheme I liked. I originally wanted a red and black design for contrast. However I ditched this color scheme for 3 reasons:
 1. There's nothing really interesting about the logo when it's black and red. It looks like a million other things that already exist.
 2. It looks like blood in a crime scene.
 3. It doesn't really represent my identity.
 
-![[Original Red.jpg]]
+![Early red and black color scheme for the logo](/articles/the-story-behind-the-squares/original-red.jpg)
 
 ## Blue and Orange
 I started to experiment with different colors, especially contrasting colors. I looked at complementary colors for the logo, but the one that stood out to me the most was the orange-blue combo. 
@@ -63,12 +63,14 @@ I started to experiment with different colors, especially contrasting colors. I 
 Orange is a good middle-ground between red and yellow. It has the passion and energy of red, accompanied by the creativity and optimism of yellow. You get a unique blend of enthusiasm and warmth. Orange was the perfect choice for the "unique flavor".
 
 Looking at the complementary color for orange, I initially landed on a light blue. I didn't feel like the light blue was doing me any favors, and immediately looked for alternatives. I looked at different shades of blue, and found that I preferred darker shades of blue.
-![[Original Blue and Orange(light).jpg]]
+![Logo in light blue and orange](/articles/the-story-behind-the-squares/original-blue-orange-light.jpg)
 
-I tried the same thing, but with a slightly darker shade of blue and a lighter shade of orange. The results looked... like a hardware store anywhere in the world.![[Original Blue and Orange(dark).jpg]]
+I tried the same thing, but with a slightly darker shade of blue and a lighter shade of orange. The results looked... like a hardware store anywhere in the world.
+
+![Logo in a darker blue and lighter orange](/articles/the-story-behind-the-squares/original-blue-orange-dark.jpg)
 
 I kept on iterating, breaking the assumption that the colors had to be complementary or had to be light and dark versions. I was then left with **the one**. The blue and the orange work together to convey the message that I wanted to. I exist among multiple worlds that each have their own set of norms and values. I can interact with all of them, but I retain my own unique identity in the process. 
-![[Full Color.svg]]
+![The final logo in blue and orange](/articles/the-story-behind-the-squares/full-color.svg)
 # Why Does This Logo Work?
 **Scalability and Simplicity**
 This logo can be scaled without becoming unreadable. It kept the essential elements without overcomplicating the logo. The shift from a 5x5 grid to a 3x3 grid and the use of basic geometry achieved both of these things for the logo. 
@@ -81,7 +83,7 @@ The grid creates a repetitive field, where the expectation is that all the shape
 The blue creates a calm terrain of pre-defined categories. They aren't inherently bad, they are existing categories that exist in their own worlds. The orange creates a unique energetic burst that breaks up the pre-defined world. It makes the statement that I don't exist within pre-defined categories, and I'm not contained within anything. The void color scheme 
 
 **Final Result**
-![[LogoSheet.jpg]]
+![Full logo sheet showing the final design and its variations](/articles/the-story-behind-the-squares/logo-sheet.jpg)
 # What to Take From This
 Your personal brand will likely be very different from mine. Your creative process will likely look very different as well. However, I think there are still some things to walk away with:
 1. If you need inspiration, just touch grass, or the ceiling ;)
