@@ -109,10 +109,15 @@
 }
 
 .prose img {
-  max-width: 100%;
+  display: block;
+  max-width: 80%;
+  max-height: 60vh;
+  width: auto;
   height: auto;
+  margin: var(--space-4) auto;
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 .prose blockquote {
