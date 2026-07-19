@@ -1,0 +1,106 @@
+/* ── Other projects ────────────────────────────────────────────── */
+.more {
+  margin-top: var(--space-24);
+}
+
+.moreHead {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 130px 1fr auto;
+  gap: 28px;
+  align-items: start;
+  padding: 26px 0;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding-top: 5px;
+}
+
+.idx {
+  color: var(--accent-ink);
+}
+
+.status {
+  color: var(--text-muted);
+}
+
+.title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.row:hover .title {
+  color: var(--accent-ink);
+}
+
+.body {
+  color: color-mix(in srgb, var(--text) 84%, var(--bg));
+  max-width: 60ch;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.arrow {
+  font-family: var(--mono);
+  color: var(--accent-ink);
+  padding-top: 4px;
+  transition: transform 0.2s ease;
+}
+
+.row:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .meta {
+    flex-direction: row;
+    gap: 12px;
+  }
+  .arrow {
+    display: none;
+  }
+}

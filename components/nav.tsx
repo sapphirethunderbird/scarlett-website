@@ -7,11 +7,11 @@ import styles from "./nav.module.css";
 
 const ITEMS = [
   { n: "01", label: "About", href: "/#about", desc: "The person behind the build" },
-  { n: "02", label: "Work", href: "/#work", desc: "Built, broken, rebuilt" },
-  { n: "03", label: "Ask", href: "/#ask", desc: "Ask the site about me" },
-  { n: "04", label: "Contact", href: "/#contact", desc: "Let's talk" },
-  { n: "05", label: "Writing", href: "/blog", desc: "Essays & project retrospects" },
-  { n: "06", label: "Off-screen", href: "/personality", desc: "Running, Japan, life beyond the code" },
+  { n: "02", label: "Projects", href: "/projects", desc: "See what else I've done" },
+  { n: "03", label: "Writing", href: "/blog", desc: "Essays & project retrospects" },
+  { n: "04", label: "Off-screen", href: "/personality", desc: "Behind the scenes" },
+  { n: "05", label: "Ask", href: "/#ask", desc: "Ask the site about me" },
+  { n: "06", label: "Contact", href: "/#contact", desc: "Let's talk" },
 ];
 
 export function Nav() {

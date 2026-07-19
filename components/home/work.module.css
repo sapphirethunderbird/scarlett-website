@@ -99,3 +99,20 @@
     text-align: left;
   }
 }
+
+.allLink {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding-top: 18px;
+}
+
+.allLink a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.allLink a:hover {
+  border-color: var(--accent);
+}
