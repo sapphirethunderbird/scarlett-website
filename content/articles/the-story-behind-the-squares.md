@@ -17,16 +17,16 @@ I experience a unique blend of multiple cultures and worldviews in any given mom
 This logo was originally done as a project in my Visual Communication Design course. The assignment was to make your own personal logo, not a company logo. 
 
 The logo needed to be:
-- <b>Scalable<b>: What happens if your logo needs to be really tiny? 
-- <b>Simple<b>: Less is more. Don't overcomplicate it.
-- <b>Authentic<b>: What is *your* identity? What do you want people to know about you?
+- <b>Scalable</b>: What happens if your logo needs to be really tiny? 
+- <b>Simple</b>: Less is more. Don't overcomplicate it.
+- <b>Authentic</b>: What is *your* identity? What do you want people to know about you?
 # Why The Squares? 
 
 ## Liminality
 The logo is meant to portray the experience of existing in "liminal space". In liminal space there are a few patterns that make a space "liminal":
-1. <b>Transitional/In-between<b>: Liminal spaces are usually passages from one place to the next, like a hallway or a train station platform. You weren't meant to linger here, it's supposed to be the loading screen between the past and the future.
-2. <b>Repetitive<b>: In liminal space imagery, you don't see a lot of different elements, but rather a repetition of specific elements. Maybe it's lockers in a school hallway that all look the same, or the same door that repeats infinitely in a hotel corridor.
-3. <b>Something is not quite normal<b>: Something doesn't seem normal when you look at it. Maybe the place looks suspended in time, or like it's existing outside of its intended purpose. This could be an abandoned mall that looks like it hasn't been renovated since the 80s, or a school hallway while class is in session.
+1. <b>Transitional/In-between</b>: Liminal spaces are usually passages from one place to the next, like a hallway or a train station platform. You weren't meant to linger here, it's supposed to be the loading screen between the past and the future.
+2. <b>Repetitive</b>: In liminal space imagery, you don't see a lot of different elements, but rather a repetition of specific elements. Maybe it's lockers in a school hallway that all look the same, or the same door that repeats infinitely in a hotel corridor.
+3. <b>Something is not quite normal</b>: Something doesn't seem normal when you look at it. Maybe the place looks suspended in time, or like it's existing outside of its intended purpose. This could be an abandoned mall that looks like it hasn't been renovated since the 80s, or a school hallway while class is in session.
 ### So Why The Grid?
 When I was making concept sketches, I was obsessing over lines intersecting. I thought that lines intersecting would be the way to describe liminality. However, nothing I did seemed right at all. I kept making sketches, but they all looked the same with slight variations. 
 
