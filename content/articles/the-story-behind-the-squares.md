@@ -1,7 +1,7 @@
 ---
 title: "The Story Behind The Squares"
 summary: "The meaning of and process behind the creation of my logo"
-date: "2026-07-20"
+date: "2026-07-19"
 project: "Logo"
 projectHref: ""
 featured: true
