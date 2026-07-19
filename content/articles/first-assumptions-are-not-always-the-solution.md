@@ -4,7 +4,7 @@ summary: "We had 60 days, a wrong assumption, and one week to fix it."
 date: "2026-07-14"
 project: "Voice-SCaNN"
 projectHref: "https://www.yamaguchi-u.ac.jp/gss/news/blog/2026/01/19/57/index.html"
-featured: true
+featured: false
 ---
 # TL;DR
 **Feedback system targeted at students, professors, and admins** 
