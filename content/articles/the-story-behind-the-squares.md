@@ -30,7 +30,14 @@ The logo is meant to portray the experience of existing in "liminal space". In l
 ### So Why The Grid?
 When I was making concept sketches, I was obsessing over lines intersecting. I thought that lines intersecting would be the way to describe liminality. However, nothing I did seemed right at all. I kept making sketches, but they all looked the same with slight variations. 
 
+<div className="img-row">
+  <img src="/articles/the-story-behind-the-squares/Line%20Canditate%201.jpeg" alt="An early line-intersection concept sketch" />
+  <img src="/articles/the-story-behind-the-squares/Line%20Canditate%202.jpeg" alt="Another early line-intersection concept sketch" />
+</div>
+
 Out of frustration, I put my pen down and stared at the ceiling. This was when I had an idea. I immediately stood up on my chair and proceeded to trace the ceiling onto my paper. This was where I got the grid. 
+
+![The ceiling traced onto paper, which became the grid](/articles/the-story-behind-the-squares/Ceiling%20Trace.jpeg)
 
 ## Unique Flavor
 I have the grid, now what? My brain was still stuck on the lines. For some reason it couldn't let them go. I ended up drawing lines through the squares to form an S from a distance. I looked at the result and my confidence took a nose dive in the shallow end of the pool.

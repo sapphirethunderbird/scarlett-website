@@ -130,6 +130,27 @@
   box-shadow: var(--shadow);
 }
 
+.prose :global(.img-row) {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  margin: var(--space-4) auto;
+}
+
+.prose :global(.img-row) img {
+  margin: 0;
+  max-width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .prose :global(.img-row) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .prose blockquote {
   border-left: 2px solid var(--accent);
   padding-left: var(--space-4);
