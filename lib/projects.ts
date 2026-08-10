@@ -27,20 +27,19 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     idx: "/01",
     featured: true,
-    title: "Burnout Predictor",
-    proof: "proof: I build AI from model to interface, and rebuild as I learn",
-    body: "A local-first desktop app that reads facial expression from a live camera feed in real time and nudges you to step away when stress reads high. I trained the model, wired the pipeline, and built the GUI. I also rebuilt it after I caught a weight-loading bug by logging per-frame confidence. The rebuild is where I prove the growth rather than paper over it.",
-    stack: ["Python", "PyTorch", "MobileNetV2", "FER2013", "OpenCV", "tkinter"],
-    status: "solo · open source",
+    title: "Shirabase",
+    proof: "proof: Instead of simply redesigning a clunky interface, I proactively seek feedback and add value.",
+    body: "A web app that transforms unstructured syllabi into actionable, market-ready skills. After trying to redesign the course management system, I asked for feedback from students and professors. I then shifted my focus from simple course management to creating new value from already existing syllabi. Syllabus data is analyzed locally in the browser. Currently deployed to Vercel with analytics integrated. ",
+    stack: ["Claude Code", "Trajective Informatics (通態情報学)", "Vercel", "Next.js", "TypeScript", "React"],
+    status: "solo · deployed",
     link: {
-      href: "https://github.com/sapphirethunderbird/burnout_predictor",
-      label: "GitHub →",
-    },
+      href: "https://github.com/sapphirethunderbird/shirabase",
+      label: "GitHub →",  
+    }, 
     links: [
       {
-        href: "/blog/burnout-predictor-in-retrospect",
-        label: "Read the retrospect →",
-        internal: true,
+        href: "https://trajective-informatics-app.vercel.app/",
+        label: "Deployment →",
       },
     ],
   },
@@ -76,14 +75,21 @@ export const OTHER_PROJECTS: OtherProject[] = [
   {
     idx: "/04",
     featured: false,
-    title: "Trajective Informatics App",
-    body: "A web app that helps inter-disciplinary students verbalize their skills and experiences based on their academic work.",
-    stack: ["TypeScript", "Next.js"],
-    status: "solo · in progress",
+    title: "Burnout Predictor",
+    body: "A local-first desktop app that reads facial expression from a live camera feed in real time and nudges you to step away when stress reads high. I trained the model, wired the pipeline, and built the GUI. I also rebuilt it after I caught a weight-loading bug by logging per-frame confidence. The rebuild is where I prove the growth rather than paper over it.",
+    stack: ["Python", "PyTorch", "MobileNetV2", "FER2013", "OpenCV", "tkinter"],
+    status: "solo · open source",
     link: {
-      href: "https://github.com/sapphirethunderbird/trajective-informatics-app",
+      href: "https://github.com/sapphirethunderbird/burnout_predictor",
       label: "GitHub →",
     },
+    links: [
+      {
+        href: "/blog/burnout-predictor-in-retrospect",
+        label: "Read the retrospect →",
+        internal: true,
+      },
+    ],
   },
   {
     idx: "/05",
