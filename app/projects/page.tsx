@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { RevealObserver } from "@/components/reveal-observer";
 import { ProjectCard } from "@/components/home/project-card";
 import { FEATURED_PROJECTS, OTHER_PROJECTS } from "@/lib/projects";
@@ -34,8 +35,9 @@ export default function ProjectsPage() {
             </span>
             <div className={styles.list}>
               {OTHER_PROJECTS.map((p) => {
-                const inner = (
-                  <>
+                const allLinks = [...(p.link ? [p.link] : []), ...(p.links ?? [])];
+                return (
+                  <div key={p.idx} className={`${styles.row} reveal`}>
                     <div className={styles.meta}>
                       <span className={styles.idx}>{p.idx}</span>
                       <span className={styles.status}>{p.status}</span>
@@ -51,24 +53,24 @@ export default function ProjectsPage() {
                         ))}
                       </div>
                     </div>
-                    <div className={styles.arrow} aria-hidden="true">
-                      →
+                    <div className={styles.links}>
+                      {allLinks.map((l) =>
+                        l.internal ? (
+                          <Link key={l.href} href={l.href}>
+                            {l.label}
+                          </Link>
+                        ) : (
+                          <a
+                            key={l.href}
+                            href={l.href}
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            {l.label}
+                          </a>
+                        ),
+                      )}
                     </div>
-                  </>
-                );
-                return p.link ? (
-                  <a
-                    key={p.idx}
-                    href={p.link.href}
-                    target="_blank"
-                    rel="noopener"
-                    className={`${styles.row} reveal`}
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={p.idx} className={`${styles.row} reveal`}>
-                    {inner}
                   </div>
                 );
               })}
