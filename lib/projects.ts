@@ -6,6 +6,7 @@ type ProjectBase = {
   body: string;
   stack: string[];
   status: string;
+  proof?: string;
   links?: ProjectLink[];
 };
 
@@ -56,26 +57,33 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
       label: "Press release →",
     },
   },
-  {
-    idx: "/03",
-    featured: true,
-    title: "AAC Communication App",
-    proof: "proof: Talk to people; it's never the user's fault.",
-    body: "An open-source web app for people with developmental disabilities, customizable cards plus freehand drawing, with text-to-speech. I tested it with autistic users and the results were genuinely mixed: some loved drawing, others said it wasn't for them. That's the point of the project. The honest takeaway I'm carrying forward: listen more before building more.",
-    stack: ["Next.js", "TypeScript", "React", "Web Speech API"],
-    status: "open source",
-    link: {
-      href: "https://github.com/sapphirethunderbird/kakehashi",
-      label: "GitHub →",
-    },
-  },
 ];
 
 export const OTHER_PROJECTS: OtherProject[] = [
   {
     idx: "/04",
     featured: false,
+    title: "AAC Communication App",
+    proof: "proof: Talk to people; it's never the user's fault.",
+    body: "An open-source web app for people with developmental disabilities, customizable cards plus freehand drawing, with text-to-speech. I tested it with autistic users and the results were genuinely mixed: some loved drawing, others said it wasn't for them. That's the point of the project. The honest takeaway I'm carrying forward: listen more before building more.",
+    stack: ["Next.js", "TypeScript", "React", "Web Speech API"],
+    status: "open source",
+    links: [
+      {
+        href: "https://github.com/sapphirethunderbird/kakehashi",
+        label: "GitHub →",
+      },
+      {
+        href: "https://yamaguchi-henkaku.jp/project/2025-6",
+        label: "Official Page →",
+      }
+    ],
+  },
+  {
+    idx: "/05",
+    featured: false,
     title: "Burnout Predictor",
+    proof: "proof: I build AI from model to interface, and rebuild as I learn.",
     body: "A local-first desktop app that reads facial expression from a live camera feed in real time and nudges you to step away when stress reads high. I trained the model, wired the pipeline, and built the GUI. I also rebuilt it after I caught a weight-loading bug by logging per-frame confidence. The rebuild is where I prove the growth rather than paper over it.",
     stack: ["Python", "PyTorch", "MobileNetV2", "FER2013", "OpenCV", "tkinter"],
     status: "solo · open source",
@@ -92,9 +100,10 @@ export const OTHER_PROJECTS: OtherProject[] = [
     ],
   },
   {
-    idx: "/05",
+    idx: "/06",
     featured: false,
     title: "OverTheWire Bandit Writeup",
+    proof: "proof: I translate my knowlege into a form that others can understand and learn from.",
     body: "A level-by-level writeup of the OverTheWire Bandit wargame. Documenting the process of learning Linux and security fundamentals.",
     stack: ["Shell", "Linux", "Security"],
     status: "writeup",

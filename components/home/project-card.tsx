@@ -8,7 +8,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
       <div className={styles.idx}>{p.idx}</div>
       <div>
         <h3 className={styles.title}>{p.title}</h3>
-        {p.featured ? <div className={styles.proof}>{p.proof}</div> : null}
+        {p.proof ? <div className={styles.proof}>{p.proof}</div> : null}
         <p className={styles.body}>{p.body}</p>
         <div className={styles.stack}>
           {p.stack.map((t) => (
