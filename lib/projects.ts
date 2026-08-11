@@ -31,7 +31,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     title: "Shirabase",
     proof: "proof: Instead of simply redesigning a clunky interface, I proactively seek feedback and add value.",
     body: "A web app that transforms unstructured syllabi into actionable, market-ready skills. After trying to redesign the course management system, I asked for feedback from students and professors. I then shifted my focus from simple course management to creating new value from already existing syllabi. Syllabus data is analyzed locally in the browser. Currently deployed to Vercel with analytics integrated. ",
-    stack: ["Claude Code", "Trajective Informatics (通態情報学)", "Vercel", "Next.js", "TypeScript", "React"],
+    stack: ["Claude Code", "Trajective Informatics (通態情報学)", "Vercel", "Analytics", "Next.js", "TypeScript", "React"],
     status: "solo · deployed",
     link: {
       href: "https://github.com/sapphirethunderbird/shirabase",
@@ -50,10 +50,23 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     title: "Voice-SCaNN",
     proof: "proof: I'd rather rebuild the right thing than polish the wrong one.",
     body: "A generative-AI course-feedback system for my university's faculty. Sixty days, a confident wrong assumption, and one week left when user testing told us we'd solved the surface, not the problem. I pushed the team to pivot to a system that actually surfaces honest feedback for students, professors, and admins. It shipped, earned an official university press release, and a professor is presenting the work at a conference.",
-    stack: ["Generative AI", "Service design", "User research", "Figma Make"],
+    stack: ["Generative AI", "Service design", "Stakeholder Mapping", "User research", "Figma Make"],
     status: "team · press release",
     link: {
       href: "https://www.yamaguchi-u.ac.jp/gss/news/blog/2026/01/19/57/index.html",
+      label: "Press release →",
+    },
+  },
+  {
+    idx: "/03",
+    featured: true,
+    title: "DXPBL",
+    proof: "proof: I build close relationships with clients, and don't settle for band-aid solutions.",
+    body: "A data-driven, community centered design for a with an aging community of 84 people (39 households) in rural Yamaguchi through building close relationships and empathy. I drove the pivot from a transportation app to bringing the community together to solve their own problems autonomously. Community engagement doubled, and we implemented a sustainable system for data management. Our team won Best DXPBL Award (2026).",
+    stack: ["DXPBL", "Community Design", "Stakeholder Mapping", "Fieldwork", "Empathy", "Human Centered Design"],
+    status: "team · press release",
+    link: {
+      href: "https://ds.cc.yamaguchi-u.ac.jp/~dxjinzai/news/1634/index.html",
       label: "Press release →",
     },
   },
