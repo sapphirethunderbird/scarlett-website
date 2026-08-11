@@ -58,6 +58,14 @@
   color: var(--accent-ink);
 }
 
+.proof {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
 .body {
   color: color-mix(in srgb, var(--text) 84%, var(--bg));
   max-width: 60ch;

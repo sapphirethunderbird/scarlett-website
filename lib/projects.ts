@@ -62,7 +62,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     featured: true,
     title: "DXPBL",
     proof: "proof: I build close relationships with clients, and don't settle for band-aid solutions.",
-    body: "A data-driven, community centered design for a with an aging community of 84 people (39 households) in rural Yamaguchi through building close relationships and empathy. I drove the pivot from a transportation app to bringing the community together to solve their own problems autonomously. Community engagement doubled, and we implemented a sustainable system for data management. Our team won Best DXPBL Award (2026).",
+    body: "A data-driven, community centered design for an aging community of 84 people (39 households) in rural Yamaguchi through building close relationships and empathy. I drove the pivot from a transportation app to bringing the community together to solve their own problems autonomously. Community engagement doubled, and we implemented a sustainable system for data management. Our team won Best DXPBL Award (2026).",
     stack: ["DXPBL", "Community Design", "Stakeholder Mapping", "Fieldwork", "Empathy", "Human Centered Design"],
     status: "team · press release",
     link: {
