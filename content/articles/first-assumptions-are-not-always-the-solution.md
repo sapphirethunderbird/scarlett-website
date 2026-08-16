@@ -43,17 +43,17 @@ However with the current system, students' true feelings seldom become analyzabl
 ### The Solution - Voice-SCaNN
 We designed a feedback system that targets all 3 major stakeholders, creating a system that encourages feedback from students, helps professors understand where students get stuck without hurting them emotionally.
 #### Expected Benefits
-**Admins**
-Admins, professors, and students all form closer bonds, resulting in a system that goes beyond feedback and creates trust.
+**Admins**: admins, professors, and students all form closer bonds, resulting in a system that goes beyond feedback and creates trust.
 
-**Students**
-Students feel that their voices are heard and class becomes a pleasant experience.
+**Students**: feel that their voices are heard and class becomes a pleasant experience.
 
-**Professors**
-Professors are empowered with their new knowledge of how students respond to their courses, resulting in better communication and more fulfillment in their work.
+**Professors**: become empowered with their new knowledge of how students respond to their courses, resulting in better communication and more fulfillment in their work.
+
 # Takeaway
 DX is not simply a matter of automating or streamlining tasks in the name of efficiency. 
 DX is a process in which stakeholders come out with improved relationships with each other.
+
+* DX = Digital Transformation
 
 # My Contribution
 My major contribution was becoming a driving force in our pivot. By the time we realized that our system was only addressing a surface level problem, we were one week away from our deadline. We were at the cross-roads: either keep on with our current system, or make drastic changes in one week.
