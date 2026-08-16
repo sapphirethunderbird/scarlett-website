@@ -84,7 +84,7 @@ The bean wasn't the best solution in the end not just because of taste, but also
 **Authenticity**
 The grid creates a repetitive field, where the expectation is that all the shapes will fit neatly inside the grid. The crescent breaks your expectations. It's not another square, and it doesn't fit within the pre-defined range that the squares created. It says "un-contained" and "liminal" without even using the words.
 
-The blue creates a calm terrain of pre-defined categories. They aren't inherently bad, they are existing categories that exist in their own worlds. The orange creates a unique energetic burst that breaks up the pre-defined world. It makes the statement that I don't exist within pre-defined categories, and I'm not contained within anything. The void color scheme 
+The blue creates a calm terrain of pre-defined categories. They aren't inherently bad, they are existing categories that exist in their own worlds. The orange creates a unique energetic burst that breaks up the pre-defined world. It makes the statement that I don't exist within pre-defined categories, and I'm not contained within anything.
 
 **Final Result**
 ![Full logo sheet showing the final design and its variations](/articles/the-story-behind-the-squares/logo-sheet.jpg)
