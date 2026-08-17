@@ -1,5 +1,5 @@
 ---
-title: "Yes, you should take Introduction to Thermodynamics (as a liberal arts or general science major)"
+title: "Yes, you should take Thermodynamics (as a liberal arts or general science major)"
 summary: "Sometimes, the best way to learn is sink or swim."
 date: "2026-08-17"
 project: ""
