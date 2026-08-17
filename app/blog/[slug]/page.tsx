@@ -6,7 +6,7 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import { RevealObserver } from "@/components/reveal-observer";
 import { ArticleLayout } from "@/components/article/article-layout";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import { getAllArticles, getArticleBySlug, getCounterpart } from "@/lib/articles";
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -21,13 +21,21 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
+  const counterpart = getCounterpart(slug);
+  const languages: Record<string, string> = {
+    [article.lang]: `/blog/${article.slug}`,
+  };
+  if (counterpart) languages[counterpart.lang] = `/blog/${counterpart.slug}`;
+
   return {
     title: `${article.title} | Scarlett Whisnant`,
     description: article.summary,
+    alternates: { languages },
     openGraph: {
       title: article.title,
       description: article.summary,
       type: "article",
+      locale: article.lang === "ja" ? "ja_JP" : "en_US",
     },
   };
 }
@@ -63,7 +71,9 @@ export default async function ArticlePage({
     <>
       <RevealObserver />
       <section>
-        <ArticleLayout meta={meta}>{content}</ArticleLayout>
+        <ArticleLayout meta={meta} counterpart={getCounterpart(slug)}>
+          {content}
+        </ArticleLayout>
       </section>
     </>
   );

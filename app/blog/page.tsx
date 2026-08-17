@@ -3,7 +3,7 @@ import Link from "next/link";
 import { RevealObserver } from "@/components/reveal-observer";
 import { ArticleCover } from "@/components/article/article-cover";
 import {
-  getAllArticles,
+  getListedArticles,
   getFeaturedArticles,
   formatArticleDate,
   type Article,
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndex() {
-  const articles = getAllArticles();
+  const articles = getListedArticles();
   const featured = getFeaturedArticles();
   const featuredSlugs = new Set(featured.map((a) => a.slug));
   const rest = articles.filter((a) => !featuredSlugs.has(a.slug));
@@ -62,7 +62,7 @@ export default function BlogIndex() {
                       className={`${styles.row} reveal`}
                     >
                       <div className={styles.meta}>
-                        {formatArticleDate(a.date)} · {a.readingTime}
+                        {formatArticleDate(a.date, a.lang)} · {a.readingTime}
                       </div>
                       <div>
                         <h3 className={styles.title}>{a.title}</h3>
@@ -71,6 +71,11 @@ export default function BlogIndex() {
                         ) : null}
                         {a.project ? (
                           <span className={styles.tag}>{a.project}</span>
+                        ) : null}
+                        {a.lang === "ja" ? (
+                          <span className={styles.tag} lang="ja">
+                            日本語
+                          </span>
                         ) : null}
                       </div>
                       <div className={styles.arrow} aria-hidden="true">
@@ -103,7 +108,7 @@ function FeaturedCard({
       <ArticleCover article={article} variant={variant} />
       <div className={styles.cardBody}>
         <div className={styles.meta}>
-          {formatArticleDate(article.date)} · {article.readingTime}
+          {formatArticleDate(article.date, article.lang)} · {article.readingTime}
         </div>
         <h3 className={styles.cardTitle}>{article.title}</h3>
         {article.summary ? (
@@ -111,6 +116,11 @@ function FeaturedCard({
         ) : null}
         {article.project ? (
           <span className={styles.tag}>{article.project}</span>
+        ) : null}
+        {article.lang === "ja" ? (
+          <span className={styles.tag} lang="ja">
+            日本語
+          </span>
         ) : null}
       </div>
     </Link>
