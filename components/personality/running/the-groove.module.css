@@ -1,0 +1,133 @@
+/* The game screen stays dark in both themes: it is a screen, not a surface. */
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  max-height: 560px;
+  min-height: 380px;
+  background: #050506;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  user-select: none;
+  touch-action: none;
+  font-family: var(--body), ui-sans-serif, system-ui, sans-serif;
+
+  /* The screen keeps its own palette in both themes; the canvas is painted
+     in fixed dark hues and the chrome has to sit against the same ground. */
+  --gg-ink: #f0ede8;
+  --gg-muted: #a7aec0;
+  --gg-glow: #151b2b;
+  --gg-ground: #050506;
+}
+
+.frame:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px;
+  color: var(--gg-ink);
+  background: radial-gradient(
+    circle at 50% 44%,
+    var(--gg-glow) 0%,
+    var(--gg-ground) 72%
+  );
+}
+
+.titleHeading {
+  margin: 0;
+  font-family: var(--display), sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--gg-ink);
+}
+
+.titleBody {
+  margin: 16px 0 0;
+  max-width: 43ch;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: var(--gg-muted);
+}
+
+.titleNote {
+  margin: 18px 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gg-muted);
+  font-family: var(--mono), monospace;
+}
+
+.button {
+  margin-top: 28px;
+  padding: 12px 26px;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--mono), ui-monospace, monospace;
+  white-space: nowrap;
+  color: var(--gg-ground);
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+}
+
+.replay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  text-align: center;
+}
+
+.replay .button {
+  margin-top: 0;
+}
+
+.hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  opacity: 0.32;
+  color: var(--gg-ink);
+  font-family: var(--mono), ui-monospace, monospace;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .frame {
+    aspect-ratio: 4 / 5;
+    min-height: 420px;
+  }
+
+  .titleHeading {
+    font-size: 1.75rem;
+  }
+}

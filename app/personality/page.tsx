@@ -3,8 +3,6 @@ import Link from "next/link";
 import { RevealObserver } from "@/components/reveal-observer";
 import { TRACKS } from "@/lib/music/tracks";
 import { resolveTracks } from "@/lib/music/itunes";
-import { getRunStats } from "@/lib/runs/queries";
-import { formatKm } from "@/lib/runs/format";
 import { JOURNEY } from "@/lib/japan/journey";
 import { gradientFor } from "@/lib/cover-gradient";
 import styles from "./personality.module.css";
@@ -20,16 +18,11 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function PersonalityHub() {
-  const [tracks, stats] = await Promise.all([
-    resolveTracks(TRACKS.slice(0, 3)),
-    Promise.resolve(getRunStats()),
-  ]);
+  const tracks = await resolveTracks(TRACKS.slice(0, 3));
   const artworks = tracks.map((t) => ({
     url: t.artworkUrl,
     key: `${t.artist}-${t.title}`,
   }));
-  const sparkKm = stats?.weekly.slice(-8).map((w) => w.km) ?? null;
-
   const doorways = [
     {
       idx: "/01",
@@ -44,12 +37,10 @@ export default async function PersonalityHub() {
       idx: "/02",
       href: "/personality/running",
       title: "Running",
-      proof: "kilometers on record, stubbornness in a database",
-      body: "Every run belongs in a table. Distance, pace, effort, a dashboard for the habit that keeps the rest of this site shipping.",
-      tease: stats
-        ? `${formatKm(stats.totalKm)} km in the database`
-        : "the table awaits its first row",
-      visual: <SparklineVisual weekly={sparkKm} />,
+      proof: "a game about the habit that keeps this site shipping",
+      body: "You are the needle. Hold to run, cut a mark with every footfall, and watch it sweep under before you can look. You only see the side you made once you let go.",
+      tease: "canvas, web audio, no assets",
+      visual: <GrooveRingsVisual />,
     },
     {
       idx: "/03",
@@ -142,32 +133,28 @@ function CoverFanVisual({
   );
 }
 
-function SparklineVisual({ weekly }: { weekly: number[] | null }) {
-  // Static fallback shape when the DB is empty or unavailable.
-  const values =
-    weekly && weekly.some((v) => v > 0) ? weekly : [3, 5, 4, 7, 5, 8, 6, 9];
-  const max = Math.max(...values, 1);
-  const points = values
-    .map((v, i) => {
-      const x = (i / (values.length - 1)) * 120;
-      const y = 44 - (v / max) * 36;
-      return `${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(" ");
+function GrooveRingsVisual() {
+  // Concentric cuts tightening toward the label: the shape the game reveals.
+  const radii = [30, 25.5, 21.5, 18, 15, 12.5, 10.5];
   return (
     <svg
-      className={styles.sparkline}
-      viewBox="0 0 120 48"
-      preserveAspectRatio="none"
+      className={styles.grooveRings}
+      viewBox="0 0 120 68"
+      preserveAspectRatio="xMidYMid meet"
     >
-      <polyline
-        points={points}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      {radii.map((r, i) => (
+        <circle
+          key={r}
+          cx="60"
+          cy="34"
+          r={r}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={i === radii.length - 1 ? 2.2 : 1}
+          opacity={0.35 + (i / radii.length) * 0.55}
+        />
+      ))}
+      <circle cx="60" cy="34" r="3.4" fill="currentColor" />
     </svg>
   );
 }

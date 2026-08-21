@@ -100,10 +100,10 @@
   transition: transform 0.3s ease;
 }
 
-/* running: sparkline */
-.sparkline {
-  width: 70%;
-  height: 45%;
+/* running: the groove, cut as concentric rings */
+.grooveRings {
+  width: 62%;
+  height: 74%;
   color: var(--accent);
   overflow: visible;
 }

@@ -12,7 +12,7 @@ const NEXT: Record<Room, { href: string; label: string; tease: string }> = {
   music: {
     href: "/personality/running",
     label: "running",
-    tease: "the kilometers that clear my head",
+    tease: "a game where you are the needle",
   },
   running: {
     href: "/personality/japan",
