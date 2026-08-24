@@ -136,7 +136,7 @@ export function AskWidget() {
         </form>
       </div>
       <p className={styles.note}>
-        This assistant is itself one of the projects — an LLM with a system
+        This assistant is itself one of the projects, an LLM with a system
         prompt written in Scarlett&apos;s voice.
       </p>
     </section>
