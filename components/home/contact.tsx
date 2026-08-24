@@ -24,6 +24,13 @@ export function Contact() {
         >
           LinkedIn ↗
         </a>
+        <a
+          href="https://docs.google.com/document/d/1VQLnA20SjJ2zwGae5b6UOHvJxHQMNTHD-JCWbyE0wBM/view?usp=sharing"
+          target="_blank"
+          rel="noopener"
+        >
+          Resume ↗
+        </a>
       </div>
       <ContactForm />
     </section>

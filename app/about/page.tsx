@@ -150,10 +150,9 @@ export default function AboutPage() {
             </h2>
             <p className={styles.body}>
               I&apos;m headed toward early-career roles that blend technical
-              depth with human-facing work. Solutions Engineering, Technical
-              Account Management, AI implementation, Developer Relations, AI
-              product. I&apos;m a US citizen, so no visa sponsorship is needed
-              for US roles.
+              depth with human-facing work. Forward deployed/solutions engineering, 
+              product design, or something similar.
+              I&apos;m a US citizen, so no visa sponsorship is needed for US roles.
             </p>
             <p className={styles.body}>
               If any of this sounds like someone you want on your team,{" "}
