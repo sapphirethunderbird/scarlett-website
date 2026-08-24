@@ -8,7 +8,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 const CHIPS = [
   "What kind of roles is she after?",
   "Tell me about the Voice-SCaNN pivot.",
-  "Can she actually code?",
+  "What are her strengths?",
   "What makes her different?",
 ];
 
@@ -76,8 +76,7 @@ export function AskWidget() {
       </div>
       <div className={`${styles.shell} reveal`}>
         <div className={styles.top}>
-          <span className={styles.dot} /> live assistant · answers as Scarlett ·
-          AI, so not perfect
+          <span className={styles.dot} /> live assistant · answers questions about my work and the way I think
         </div>
         <div className={styles.log} ref={logRef} aria-live="polite">
           <div className={`${styles.msg} ${styles.bot}`}>
