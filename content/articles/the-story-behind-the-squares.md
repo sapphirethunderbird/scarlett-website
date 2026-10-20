@@ -4,6 +4,8 @@ summary: "The meaning of and process behind the creation of my logo"
 date: "2026-07-19"
 project: "Logo"
 projectHref: ""
+image: "/articles/the-story-behind-the-squares/cover.jpeg"
+imageAlt: "Mono orange logo"
 featured: true
 ---
 # The Concept

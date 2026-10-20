@@ -15,8 +15,10 @@ a:hover .cover {
   border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
 }
 
+/* Shape of the gradient fallback in the lead slot. A real cover ignores this
+   and uses `.heroFit`; 4/3 suits the ~40% column the letterbox no longer does. */
 .hero {
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 4 / 3;
 }
 
 .card {
@@ -25,6 +27,18 @@ a:hover .cover {
 
 .thumb {
   aspect-ratio: 16 / 10;
+}
+
+/* Featured cover sized by the picture itself: no aspect-ratio, no cropping. */
+.heroFit {
+  display: block;
+  align-self: start;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .img {
@@ -47,9 +61,9 @@ a:hover .cover {
 }
 
 .hero .fallbackTitle {
-  font-size: var(--step-4);
-  max-width: 22ch;
-  padding: var(--space-8);
+  font-size: var(--step-3);
+  max-width: 16ch;
+  padding: var(--space-6);
 }
 
 @media (max-width: 720px) {
@@ -57,7 +71,6 @@ a:hover .cover {
     aspect-ratio: 16 / 10;
   }
   .hero .fallbackTitle {
-    font-size: var(--step-3);
-    padding: var(--space-6);
+    font-size: var(--step-2);
   }
 }

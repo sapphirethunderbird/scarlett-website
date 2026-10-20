@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import { imageSize } from "image-size";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -18,6 +19,10 @@ export type ArticleMeta = {
   /** Optional cover image path under `public/` (e.g. "/articles/foo.jpg"). */
   image?: string;
   imageAlt?: string;
+  /** Intrinsic pixel size of `image`, read off the file at build time. Lets the
+   *  featured cover render at the picture's own shape instead of a fixed crop. */
+  imageWidth?: number;
+  imageHeight?: number;
   /** Marks a piece for the featured rail on the writing index. */
   featured?: boolean;
   /** Language of this piece. Inferred from a `-jp` filename suffix. */
@@ -52,6 +57,20 @@ function resolveLanguage(
   return { lang };
 }
 
+/** Intrinsic size of a cover, or undefined if the file is missing or unreadable
+ *  (a bad `image:` path falls back to the gradient rather than failing the build). */
+function readImageSize(
+  image: string,
+): Pick<ArticleMeta, "imageWidth" | "imageHeight"> {
+  try {
+    const file = path.join(process.cwd(), "public", image.replace(/^\//, ""));
+    const { width, height } = imageSize(fs.readFileSync(file));
+    return { imageWidth: width, imageHeight: height };
+  } catch {
+    return {};
+  }
+}
+
 function readArticleFile(filename: string): Article {
   const slug = filename.replace(/\.md$/, "");
   const raw = fs.readFileSync(path.join(ARTICLES_DIR, filename), "utf8");
@@ -68,6 +87,7 @@ function readArticleFile(filename: string): Article {
     projectHref: data.projectHref ? String(data.projectHref) : undefined,
     image: data.image ? String(data.image) : undefined,
     imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+    ...(data.image ? readImageSize(String(data.image)) : {}),
     featured: Boolean(data.featured),
     content,
   };
