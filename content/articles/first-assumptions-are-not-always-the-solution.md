@@ -4,6 +4,8 @@ summary: "We had 60 days, a wrong assumption, and one week to fix it."
 date: "2026-07-14"
 project: "Voice-SCaNN"
 projectHref: "https://www.yamaguchi-u.ac.jp/gss/news/blog/2026/01/19/57/index.html"
+image: "/articles/first-assumptions-are-not-always-the-solution/cover.jpg"
+imageAlt: "POV you have to pivot in a week"
 featured: false
 ---
 # TL;DR
@@ -63,4 +65,3 @@ I knew we had to pivot, and I knew it wasn't going to be easy. So I started maki
 I'm not patting myself on the back for going against the grain. I'm not saying that it's ok to ditch your team when you think you have a better idea. What I am saying is that if you know something is the right thing to do, you need to inspire others to get on board, even if the right thing to do is hard. You may not get your message across on the first try, friction is a real phenomenon. You must have faith however, that your team is capable of going to the next level.
 
 [Official Press Release (Yamaguchi University)](https://www.yamaguchi-u.ac.jp/gss/news/blog/2026/01/19/57/index.html)
-
