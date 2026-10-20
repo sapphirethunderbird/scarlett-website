@@ -4,6 +4,8 @@ summary: "Sometimes, the best way to learn is sink or swim."
 date: "2026-08-17"
 project: ""
 projectHref: ""
+image: "/articles/thermodymanics-as-liberal-arts-major/cover.jpeg"
+imageAlt: "Real notes for Thermodynamics"
 featured: false
 ---
 
@@ -54,4 +56,4 @@ I never reference any classical Japanese literature in my daily life. I probably
 
 This is why you, as a liberal arts or general science student, should take Thermodynamics. It's not about learning physics. 
 
-You're supposed to struggle. You're supposed to feel like it's hopeless at 1:46 am (even though you should probably be sleeping before your exam). The only way you will truly grow is when you're outside of your comfort zone. 
+You're supposed to struggle. You're supposed to feel like it's hopeless at 1:46 am (even though you should probably be sleeping before your exam). The only way you will truly grow is when you're outside of your comfort zone.
