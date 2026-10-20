@@ -60,7 +60,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 160px 1fr auto;
+  grid-template-columns: 200px 1fr auto;
   gap: 28px;
   align-items: start;
   padding: 34px 0;
@@ -73,11 +73,23 @@
   border-bottom: 1px solid var(--border);
 }
 
+.rowAside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
 .meta {
   font-family: var(--mono);
   font-size: 0.78rem;
   color: var(--text-muted);
   padding-top: 6px;
+}
+
+/* Under a thumbnail the cap-height nudge that aligns the date with the title
+   is just slack, so drop it. */
+.rowAside .meta {
+  padding-top: 0;
 }
 
 .title {
@@ -128,6 +140,9 @@
   .row {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+  .rowAside {
+    max-width: 200px;
   }
   .arrow {
     display: none;

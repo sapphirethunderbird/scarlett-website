@@ -9,14 +9,26 @@ import styles from "./article-cover.module.css";
  * a distinct-but-stable look — and the index never looks empty before real art exists.
  */
 
+const VARIANT_CLASS = {
+  hero: styles.hero,
+  card: styles.card,
+  thumb: styles.thumb,
+} as const;
+
+const VARIANT_SIZES = {
+  hero: "100vw",
+  card: "(max-width: 720px) 100vw, 50vw",
+  thumb: "200px",
+} as const;
+
 export function ArticleCover({
   article,
   variant = "card",
 }: {
   article: Pick<Article, "slug" | "title" | "image" | "imageAlt">;
-  variant?: "hero" | "card";
+  variant?: "hero" | "card" | "thumb";
 }) {
-  const className = `${styles.cover} ${variant === "hero" ? styles.hero : styles.card}`;
+  const className = `${styles.cover} ${VARIANT_CLASS[variant]}`;
 
   if (article.image) {
     return (
@@ -25,7 +37,7 @@ export function ArticleCover({
           src={article.image}
           alt={article.imageAlt ?? article.title}
           fill
-          sizes={variant === "hero" ? "100vw" : "(max-width: 720px) 100vw, 50vw"}
+          sizes={VARIANT_SIZES[variant]}
           className={styles.img}
         />
       </div>
@@ -39,9 +51,12 @@ export function ArticleCover({
       role="img"
       aria-label={article.imageAlt ?? article.title}
     >
-      <span className={styles.fallbackTitle} aria-hidden="true">
-        {article.title}
-      </span>
+      {/* At thumbnail size the title overlay is illegible clutter, so it is omitted. */}
+      {variant === "thumb" ? null : (
+        <span className={styles.fallbackTitle} aria-hidden="true">
+          {article.title}
+        </span>
+      )}
     </div>
   );
 }

@@ -61,8 +61,11 @@ export default function BlogIndex() {
                       href={`/blog/${a.slug}`}
                       className={`${styles.row} reveal`}
                     >
-                      <div className={styles.meta}>
-                        {formatArticleDate(a.date, a.lang)} · {a.readingTime}
+                      <div className={styles.rowAside}>
+                        <ArticleCover article={a} variant="thumb" />
+                        <div className={styles.meta}>
+                          {formatArticleDate(a.date, a.lang)} · {a.readingTime}
+                        </div>
                       </div>
                       <div>
                         <h3 className={styles.title}>{a.title}</h3>
