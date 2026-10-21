@@ -6,7 +6,7 @@ project: "Logo"
 projectHref: ""
 image: "/articles/the-story-behind-the-squares/cover.jpeg"
 imageAlt: "Mono orange logo"
-featured: true
+featured: false
 ---
 # The Concept
 
