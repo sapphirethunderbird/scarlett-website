@@ -124,6 +124,25 @@
 }
 
 .titleLink {
+  display: inline-block;
   text-decoration: none;
   color: inherit;
+}
+
+.titleLink::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.4em;
+  color: var(--accent-ink);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.row:hover .titleLink::after,
+.titleLink:focus-visible::after {
+  opacity: 1;
+  transform: none;
 }

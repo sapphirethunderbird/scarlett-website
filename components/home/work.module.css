@@ -117,15 +117,35 @@
   border-color: var(--accent);
 }
 
-/* Project titles and case-study links point at the project's own page. */
+/* The title is the link into the project's case study. */
 .titleLink {
+  display: inline-block;
   text-decoration: none;
   color: inherit;
   transition: color 0.2s ease;
 }
 
-.titleLink:hover {
+.titleLink::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.4em;
   color: var(--accent-ink);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.titleLink:hover,
+.titleLink:focus-visible {
+  color: var(--accent-ink);
+}
+
+.titleLink:hover::after,
+.titleLink:focus-visible::after {
+  opacity: 1;
+  transform: none;
 }
 
 .caseLink {
