@@ -122,3 +122,8 @@
     align-items: flex-start;
   }
 }
+
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+}

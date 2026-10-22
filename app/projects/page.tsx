@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { RevealObserver } from "@/components/reveal-observer";
 import { ProjectCard } from "@/components/home/project-card";
-import { FEATURED_PROJECTS, OTHER_PROJECTS } from "@/lib/projects";
+import { FEATURED_PROJECTS, OTHER_PROJECTS, projectLinks } from "@/lib/projects";
 import workStyles from "@/components/home/work.module.css";
 import styles from "./projects.module.css";
 
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
             </span>
             <div className={styles.list}>
               {OTHER_PROJECTS.map((p) => {
-                const allLinks = [...(p.link ? [p.link] : []), ...(p.links ?? [])];
+                const allLinks = projectLinks(p);
                 return (
                   <div key={p.idx} className={`${styles.row} reveal`}>
                     <div className={styles.meta}>
@@ -43,7 +43,18 @@ export default function ProjectsPage() {
                       <span className={styles.status}>{p.status}</span>
                     </div>
                     <div>
-                      <h3 className={styles.title}>{p.title}</h3>
+                      <h3 className={styles.title}>
+                        {p.detail ? (
+                          <Link
+                            href={`/projects/${p.slug}`}
+                            className={styles.titleLink}
+                          >
+                            {p.title}
+                          </Link>
+                        ) : (
+                          p.title
+                        )}
+                      </h3>
                       {p.proof ? <div className={styles.proof}>{p.proof}</div> : null}
                       <p className={styles.body}>{p.body}</p>
                       <div className={styles.stack}>
@@ -55,6 +66,9 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     <div className={styles.links}>
+                      {p.detail ? (
+                        <Link href={`/projects/${p.slug}`}>Case study →</Link>
+                      ) : null}
                       {allLinks.map((l) =>
                         l.internal ? (
                           <Link key={l.href} href={l.href}>

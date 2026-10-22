@@ -116,3 +116,20 @@
 .allLink a:hover {
   border-color: var(--accent);
 }
+
+/* Project titles and case-study links point at the project's own page. */
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.titleLink:hover {
+  color: var(--accent-ink);
+}
+
+.caseLink {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
