@@ -181,7 +181,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
       facts: [
         { label: "role", value: "Team: I drove the pivot" },
         { label: "community", value: "84 residents, 39 households" },
-        { label: "place", value: "Rural Yamaguchi, Japan" },
+        { label: "place", value: "Sakate Settlement, Ato" },
         { label: "method", value: "Fieldwork, data, relationships" },
       ],
       outcomes: [
