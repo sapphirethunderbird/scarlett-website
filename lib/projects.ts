@@ -138,25 +138,38 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         {
           heading: "The brief",
           body: [
-            "Course feedback at the university was collected and then went nowhere useful. We were asked to build a generative-AI system that would make it work. Sixty days, a team, three stakeholder groups who all wanted different things out of the same forms.",
+            "We had 60 days, a wrong assumption, and one week to fix it.",
+            "Our team had less than 60 days to design a generative AI powered solution for the admins at the Faculty of Global and Science Studies. We started with the wrong assumption, which we realized a week before the deadline. We then pivoted to making a more holistic system that encourages feedback and course improvement.",
           ],
         },
         {
           heading: "The assumption we were confident about",
           body: [
-            "We decided early that the problem was the overall user experience of the current system, and that improving that would deliver value. We built toward that for most of the project, and we were sure about it.",
+            "We decided early on that the problem was that the number of steps needed to achieve a specific task rendered the entire registration system inadequate for the needs of the faculty and needed to be redesigned urgently. We thought that if we just fixed the user experience to be more intuitive and efficient, it would deliver value. We built toward that for most of the project, and we were dangerously confident about it.",
           ],
         },
         {
           heading: "The week it fell apart",
           body: [
-            "Coming Soon",
+            "After conducting user testing with faculty admins, we found that the faculty really didn't find our updated system to be very useful. It had handy features and all, but it didn't really change their lives. It was the easy solution that barely scraped the surface of the real problem.",
+            " This is when we literally went back to the drawing board and mapped out our stakeholders and their needs.",
+            "Admins, staff, and students are all frustrated with the underlying systems that are in place for class administration. In order to resolve these issues, we need to address the concerns of all three, and not just redesign the broken UI.",
+
+            "Students want their courses to have their voices heard when it comes to course feedback. Professors want to have constructive feedback for their courses without being emotionally attacked. Admins want an environment where both students and professors are satisfied and can grow. However with the current system, students' true feelings seldom become analyzable data, they tend to be concealed within students' conversations with each other. This leads to a system that lacks the necessary feedback for course improvement.",
           ],
         },
         {
-          heading: "What shipped",
+          heading: "The Solution",
           body: [
-            "Coming soon",
+            "We designed a feedback system that targets all 3 major stakeholders, creating a system that encourages feedback from students, helps professors understand where students get stuck without hurting them emotionally.",
+            "We defined stakeholder value as the following. Admins want admins, professors, and students to all form closer bonds, resulting in a system that goes beyond feedback and creates trust. Students want to feel that their voices are heard and for class to become a pleasant experience. Professors want to be empowered with knowledge of how students respond to their courses, resulting in better communication and more fulfillment in their work.",
+            "The proof of concept was made using NotebookLM as the database for student feedback as well as the means of outputting the feedback in a meaningful way. The main prototype was made collaboratively using Figma Make. We had a working prototype finished by the end of the week and presented it the following week.",
+          ],
+        },
+        {
+          heading: "The Afterlife",
+          body: [
+            "Despite our extremely tight deadline, as a team we were able to get second place out of all of the presentations. Our project was introduced by our professor at a design conference a few months later.",
           ],
         },
       ],
