@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ResolvedTrack } from "@/lib/music/itunes";
 import { gradientFor } from "@/lib/cover-gradient";
+import { fill, type Dictionary } from "@/lib/i18n";
 import styles from "./cover-flow.module.css";
 
 /**
@@ -26,7 +27,13 @@ function formatTime(seconds: number): string {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
+export function CoverFlow({
+  tracks,
+  copy,
+}: {
+  tracks: ResolvedTrack[];
+  copy: Dictionary["coverFlow"];
+}) {
   const [active, setActive] = useState(() => Math.floor(tracks.length / 2));
   const [playingId, setPlayingId] = useState<number | null>(null);
   const [elapsed, setElapsed] = useState(0);
@@ -65,7 +72,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
       });
       audio.addEventListener("error", () => {
         setPlayingId(null);
-        setNotice("preview unavailable - Apple's CDN said no");
+        setNotice(copy.noticeUnavailable);
       });
       audioRef.current = audio;
     }
@@ -85,7 +92,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
       if (!track.previewUrl) {
         audio.pause();
         setPlayingId(null);
-        setNotice("no preview available for this one");
+        setNotice(copy.noticeNoPreview);
         return;
       }
       audio.src = track.previewUrl;
@@ -95,7 +102,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
       audio
         .play()
         .then(() => setPlayingId(track.itunesId))
-        .catch(() => setNotice("preview unavailable - Apple's CDN said no"));
+        .catch(() => setNotice(copy.noticeUnavailable));
     },
     [ensureAudio, playingId],
   );
@@ -189,7 +196,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
     notice ??
     (playingTrack
       ? `${formatTime(elapsed)} / ${formatTime(duration)}`
-      : "click the center cover to play a 30s preview");
+      : copy.idlePrompt);
 
   return (
     <div className={styles.player}>
@@ -201,7 +208,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
             className={styles.transportBtn}
             onClick={() => step(-1)}
             disabled={active === 0}
-            aria-label="Previous cover"
+            aria-label={copy.prevCover}
           >
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M4 3h2v10H4zM13 3v10L6.5 8z" fill="currentColor" />
@@ -211,7 +218,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
             type="button"
             className={`${styles.transportBtn} ${styles.playBtn}`}
             onClick={() => activeTrack && playToggle(activeTrack)}
-            aria-label={isPlaying ? "Pause preview" : "Play 30 second preview"}
+            aria-label={isPlaying ? copy.pausePreview : copy.playPreview}
           >
             {isPlaying ? (
               <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -228,7 +235,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
             className={styles.transportBtn}
             onClick={() => step(1)}
             disabled={active === tracks.length - 1}
-            aria-label="Next cover"
+            aria-label={copy.nextCover}
           >
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M10 3h2v10h-2zM3 3v10l6.5-5z" fill="currentColor" />
@@ -258,7 +265,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
         tabIndex={0}
         role="group"
         aria-roledescription="carousel"
-        aria-label="Album covers. Use left and right arrow keys to browse, Enter to play a preview."
+        aria-label={copy.carouselLabel}
         onKeyDown={onKeyDown}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -292,7 +299,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
                 }}
                 aria-label={
                   offset === 0
-                    ? `${playingId === t.itunesId ? "Pause" : "Play"} preview of ${t.title} by ${t.artist}`
+                    ? fill(playingId === t.itunesId ? copy.pauseTrack : copy.playTrack, { title: t.title, artist: t.artist })
                     : `Bring ${t.title} by ${t.artist} to the front`
                 }
               >
@@ -325,17 +332,17 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
       </div>
 
       <p className={styles.hint} aria-hidden="true">
-        ← → to flip · enter to play · drag works too · sound on
+        {copy.hint}
       </p>
 
       {/* the source-list tribute: fully accessible, zero-3D path */}
       <ol className={styles.trackList}>
         <li className={styles.listHead} aria-hidden="true">
           <span />
-          <span>name</span>
-          <span className={styles.colArtist}>artist</span>
-          <span className={styles.colAlbum}>album</span>
-          <span className={styles.colTime}>time</span>
+          <span>{copy.colName}</span>
+          <span className={styles.colArtist}>{copy.colArtist}</span>
+          <span className={styles.colAlbum}>{copy.colAlbum}</span>
+          <span className={styles.colTime}>{copy.colTime}</span>
         </li>
         {tracks.map((t, i) => {
           const rowPlaying = playingId === t.itunesId;
@@ -349,7 +356,7 @@ export function CoverFlow({ tracks }: { tracks: ResolvedTrack[] }) {
                   setActive(i);
                   playToggle(t);
                 }}
-                aria-label={`${rowPlaying ? "Pause" : "Play"} ${t.title} by ${t.artist}`}
+                aria-label={fill(rowPlaying ? copy.pauseRow : copy.playRow, { title: t.title, artist: t.artist })}
               >
                 <span className={styles.rowNum}>
                   {rowPlaying ? (

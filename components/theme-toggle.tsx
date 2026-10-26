@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Dictionary } from "@/lib/i18n";
 import styles from "./theme-toggle.module.css";
 
 type Theme = "dark" | "light";
@@ -10,7 +11,7 @@ function current(): Theme {
   return (document.documentElement.getAttribute("data-theme") as Theme) || "dark";
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ copy }: { copy: Dictionary["theme"] }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   // Sync with whatever the no-FOUC script applied before paint.
@@ -36,10 +37,8 @@ export function ThemeToggle() {
       type="button"
       className={styles.toggle}
       onClick={toggle}
-      aria-label={
-        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-      }
-      title={theme === "dark" ? "Light" : "Dark"}
+      aria-label={theme === "dark" ? copy.toLight : copy.toDark}
+      title={theme === "dark" ? copy.light : copy.dark}
     >
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
         <circle cx="12" cy="12" r="9" className={styles.ring} />

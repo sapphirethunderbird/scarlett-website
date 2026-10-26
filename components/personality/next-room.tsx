@@ -1,4 +1,6 @@
 import Link from "next/link";
+import type { Dictionary } from "@/lib/i18n";
+import { localeHref, type Locale } from "@/lib/i18n/config";
 import styles from "./next-room.module.css";
 
 /**
@@ -8,32 +10,31 @@ import styles from "./next-room.module.css";
 
 type Room = "music" | "running" | "japan";
 
-const NEXT: Record<Room, { href: string; label: string; tease: string }> = {
-  music: {
-    href: "/personality/running",
-    label: "running",
-    tease: "a game where you are the needle",
-  },
-  running: {
-    href: "/personality/japan",
-    label: "japan",
-    tease: "a country learned by train",
-  },
-  japan: {
-    href: "/personality",
-    label: "back to the hub",
-    tease: "three doorways, seen from outside",
-  },
+/** Which room each room hands you to, and the dictionary key that names it. */
+const NEXT: Record<Room, { href: string; key: "running" | "japan" | "hub" }> = {
+  music: { href: "/personality/running", key: "running" },
+  running: { href: "/personality/japan", key: "japan" },
+  japan: { href: "/personality", key: "hub" },
 };
 
-export function NextRoom({ current }: { current: Room }) {
+export function NextRoom({
+  current,
+  locale,
+  copy,
+}: {
+  current: Room;
+  locale: Locale;
+  copy: Dictionary["personality"]["nextRoom"];
+}) {
   const next = NEXT[current];
+  const { label, tease } = copy[next.key];
+
   return (
     <div className={styles.nextRoom}>
-      <span className="eyebrow">next room</span>
-      <Link href={next.href} className={styles.link}>
-        <span className={styles.label}>{next.label}</span>
-        <span className={styles.tease}>{next.tease}</span>
+      <span className="eyebrow">{copy.eyebrow}</span>
+      <Link href={localeHref(next.href, locale)} className={styles.link}>
+        <span className={styles.label}>{label}</span>
+        <span className={styles.tease}>{tease}</span>
         <span className={styles.arrow} aria-hidden="true">
           →
         </span>

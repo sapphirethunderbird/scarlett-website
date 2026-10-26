@@ -1,4 +1,6 @@
 import type { StaticImageData } from "next/image";
+import type { Locale } from "@/lib/i18n/config";
+import { JOURNEY_COPY_JA } from "./ja";
 
 /**
  * The journey's content — chapters of one continuous scroll through Japan.
@@ -166,3 +168,36 @@ export const JOURNEY: JourneyChapter[] = [
     ],
   },
 ];
+
+/* ---- localization ------------------------------------------------------- */
+
+const JOURNEY_COPY: Partial<
+  Record<Locale, Record<string, import("./ja").JourneyCopy>>
+> = { ja: JOURNEY_COPY_JA };
+
+/**
+ * The journey in `locale`. English is the source above; a locale supplies only
+ * text, so layout, parallax and placeholder art stay single-sourced and a
+ * missing chapter or field falls back to the English rather than vanishing.
+ */
+export function getJourney(locale: Locale): JourneyChapter[] {
+  const copy = locale === "en" ? undefined : JOURNEY_COPY[locale];
+  if (!copy) return JOURNEY;
+
+  return JOURNEY.map((chapter) => {
+    const t = copy[chapter.id];
+    if (!t) return chapter;
+    return {
+      ...chapter,
+      kicker: t.kicker ?? chapter.kicker,
+      title: t.title ?? chapter.title,
+      date: t.date ?? chapter.date,
+      body: t.body ?? chapter.body,
+      photos: chapter.photos.map((photo, i) => ({
+        ...photo,
+        alt: t.photos?.[i]?.alt ?? photo.alt,
+        caption: t.photos?.[i]?.caption ?? photo.caption,
+      })),
+    };
+  });
+}

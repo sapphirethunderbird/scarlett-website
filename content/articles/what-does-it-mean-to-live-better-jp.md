@@ -1,5 +1,5 @@
 ---
-title: "「よりよく暮らす」とは？?"
+title: "「よりよく暮らす」とは？"
 summary: "「生存」と「よりよい暮らし」の違い"
 date: "2026-10-21"
 project: "Space QOL and ECLSS Human Resource Development Program"

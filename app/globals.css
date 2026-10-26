@@ -128,3 +128,24 @@ hr.rule {
     transform: none;
   }
 }
+
+/* Japanese: the Latin display/body/mono faces have no CJK glyphs, so Noto Sans
+   JP is appended to each stack. The browser resolves per character, keeping
+   Latin words in Syne/Inter and rendering kana and kanji in Noto. */
+html[lang="ja"] {
+  --display: var(--font-syne), "Syne", var(--font-noto-jp), "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --body: var(--font-inter), "Inter", var(--font-noto-jp), "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --mono: var(--font-jetbrains-mono), "JetBrains Mono", var(--font-noto-jp),
+    "Noto Sans JP", monospace;
+}
+
+/* Small Latin UI labels are tracked out and uppercased; applied to kana that
+   reads as gappy, so Japanese gets the tracking back. */
+html[lang="ja"] .eyebrow,
+html[lang="ja"] [class*="menuBtn"],
+html[lang="ja"] [class*="status"],
+html[lang="ja"] [class*="tease"] {
+  letter-spacing: 0.02em;
+}

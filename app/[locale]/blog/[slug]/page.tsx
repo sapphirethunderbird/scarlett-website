@@ -7,6 +7,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { RevealObserver } from "@/components/reveal-observer";
 import { ArticleLayout } from "@/components/article/article-layout";
 import { getAllArticles, getArticleBySlug, getCounterpart } from "@/lib/articles";
+import { getDictionary, resolveLocale } from "@/lib/i18n";
+import { HTML_LANG, OG_LOCALE, localeHref } from "@/lib/i18n/config";
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -15,27 +17,38 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale: rawLocale, slug } = await params;
+  const locale = resolveLocale(rawLocale);
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
   const counterpart = getCounterpart(slug);
   const languages: Record<string, string> = {
-    [article.lang]: `/blog/${article.slug}`,
+    [HTML_LANG[article.lang]]: localeHref(`/blog/${article.slug}`, article.lang),
   };
-  if (counterpart) languages[counterpart.lang] = `/blog/${counterpart.slug}`;
+  if (counterpart) {
+    languages[HTML_LANG[counterpart.lang]] = localeHref(
+      `/blog/${counterpart.slug}`,
+      counterpart.lang,
+    );
+  }
 
   return {
-    title: `${article.title} | Scarlett Whisnant`,
+    title: `${article.title} | ${getDictionary(locale).meta.titleSuffix}`,
     description: article.summary,
-    alternates: { languages },
+    alternates: {
+      // A piece is canonical in the part of the site that matches the language
+      // it is written in, so the same text isn't indexed twice.
+      canonical: localeHref(`/blog/${article.slug}`, article.lang),
+      languages,
+    },
     openGraph: {
       title: article.title,
       description: article.summary,
       type: "article",
-      locale: article.lang === "ja" ? "ja_JP" : "en_US",
+      locale: OG_LOCALE[article.lang],
     },
   };
 }
@@ -43,9 +56,10 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale: rawLocale, slug } = await params;
+  const locale = resolveLocale(rawLocale);
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
@@ -71,7 +85,12 @@ export default async function ArticlePage({
     <>
       <RevealObserver />
       <section>
-        <ArticleLayout meta={meta} counterpart={getCounterpart(slug)}>
+        <ArticleLayout
+          meta={meta}
+          counterpart={getCounterpart(slug)}
+          locale={locale}
+          copy={getDictionary(locale).article}
+        >
           {content}
         </ArticleLayout>
       </section>

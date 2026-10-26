@@ -8,8 +8,12 @@ import {
   getProjectNeighbors,
   projectLinks,
 } from "@/lib/projects";
+import { getDictionary, resolveLocale } from "@/lib/i18n";
+import { OG_LOCALE, languageAlternates, localeHref } from "@/lib/i18n/config";
 import styles from "./project.module.css";
 
+// Slugs are locale-independent, so one list covers both locales; the `[locale]`
+// segment's own generateStaticParams supplies the other half of each pair.
 export function generateStaticParams() {
   return ALL_PROJECTS.filter((p) => p.detail).map((p) => ({ slug: p.slug }));
 }
@@ -17,33 +21,46 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale: rawLocale, slug } = await params;
+  const locale = resolveLocale(rawLocale);
+  const project = getProjectBySlug(slug, locale);
   if (!project) return {};
 
   const description = project.detail?.tagline ?? project.body.trim();
+  const path = `/projects/${project.slug}`;
   return {
-    title: `${project.title} | Scarlett Whisnant`,
+    title: `${project.title} | ${getDictionary(locale).meta.titleSuffix}`,
     description,
-    openGraph: { title: project.title, description, type: "article" },
+    alternates: {
+      canonical: localeHref(path, locale),
+      languages: languageAlternates(path),
+    },
+    openGraph: {
+      title: project.title,
+      description,
+      type: "article",
+      locale: OG_LOCALE[locale],
+    },
   };
 }
 
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale: rawLocale, slug } = await params;
+  const locale = resolveLocale(rawLocale);
+  const d = getDictionary(locale).projects;
+  const project = getProjectBySlug(slug, locale);
   // Projects without long-form content have nothing to show here; the index
   // keeps its card and links out directly.
   if (!project?.detail) notFound();
 
   const { detail } = project;
-  const { prev, next } = getProjectNeighbors(slug);
+  const { prev, next } = getProjectNeighbors(slug, locale);
   const links = projectLinks(project);
 
   return (
@@ -53,7 +70,7 @@ export default async function ProjectPage({
         <article className={styles.project}>
           <header className={`${styles.head} reveal`}>
             <p className="eyebrow">
-              project {project.idx} · {project.status}
+              {d.project} {project.idx} · {project.status}
             </p>
             <h1 className={styles.title}>{project.title}</h1>
             <p className={styles.tagline}>{detail.tagline}</p>
@@ -64,7 +81,7 @@ export default async function ProjectPage({
               <div className={styles.headLinks}>
                 {links.map((l) =>
                   l.internal ? (
-                    <Link key={l.href} href={l.href}>
+                    <Link key={l.href} href={localeHref(l.href, locale)}>
                       {l.label}
                     </Link>
                   ) : (
@@ -112,7 +129,7 @@ export default async function ProjectPage({
           </div>
 
           <div className={`${styles.stack} reveal`}>
-            <span className="eyebrow">stack</span>
+            <span className="eyebrow">{d.stack}</span>
             <div className={styles.tags}>
               {project.stack.map((t) => (
                 <span key={t} className={styles.tag}>
@@ -125,19 +142,19 @@ export default async function ProjectPage({
           <footer className={styles.foot}>
             <div className={styles.neighbor} data-side="prev">
               {prev?.detail ? (
-                <Link href={`/projects/${prev.slug}`}>
-                  <span className={styles.neighborLabel}>← previous</span>
+                <Link href={localeHref(`/projects/${prev.slug}`, locale)}>
+                  <span className={styles.neighborLabel}>{d.prev}</span>
                   <span className={styles.neighborTitle}>{prev.title}</span>
                 </Link>
               ) : null}
             </div>
-            <Link className={styles.backAll} href="/projects">
-              all projects
+            <Link className={styles.backAll} href={localeHref("/projects", locale)}>
+              {d.allProjects}
             </Link>
             <div className={styles.neighbor} data-side="next">
               {next?.detail ? (
-                <Link href={`/projects/${next.slug}`}>
-                  <span className={styles.neighborLabel}>next →</span>
+                <Link href={localeHref(`/projects/${next.slug}`, locale)}>
+                  <span className={styles.neighborLabel}>{d.next}</span>
                   <span className={styles.neighborTitle}>{next.title}</span>
                 </Link>
               ) : null}

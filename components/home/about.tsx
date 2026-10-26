@@ -1,21 +1,25 @@
 import Link from "next/link";
+import type { Dictionary } from "@/lib/i18n";
+import { localeHref, type Locale } from "@/lib/i18n/config";
 import styles from "./about.module.css";
 
-export function About() {
+export function About({
+  locale,
+  copy,
+}: {
+  locale: Locale;
+  copy: Dictionary["home"]["about"];
+}) {
   return (
     <section id="about">
       <div className="sec-head reveal">
-        <span className="eyebrow">01: who</span>
-        <h2>The person behind the build</h2>
+        <span className="eyebrow">{copy.eyebrow}</span>
+        <h2>{copy.heading}</h2>
       </div>
       <div className="reveal">
-        <p className={styles.pull}>
-          I moved to Japan at eleven with no Japanese and got fluent fast in a
-          system that wasn&apos;t built for me. Now I build technology for the
-          people existing systems forgot to design for.
-        </p>
-        <Link href="/about" className={styles.storyLink}>
-          Read my story →
+        <p className={styles.pull}>{copy.pull}</p>
+        <Link href={localeHref("/about", locale)} className={styles.storyLink}>
+          {copy.link}
         </Link>
       </div>
     </section>

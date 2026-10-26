@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { fill, type Dictionary } from "@/lib/i18n";
 import styles from "./the-groove.module.css";
 
 /* ============================================================================
@@ -58,6 +59,14 @@ const PLAYBACK_RATE = 4;
 const MINOR_PENTATONIC = [0, 3, 5, 7, 10];
 const ROOT_MIDI = 50;          // D3
 const LOOP_NOTES = 8;
+
+/* Canvas takes real font names, not CSS custom properties, so the stacks are
+   spelled out here. Noto Sans JP is appended for the Japanese HUD labels: the
+   Latin faces carry no CJK glyphs, and canvas does no per-character fallback
+   beyond the families it is handed. */
+const MONO_STACK =
+  "'JetBrains Mono', 'Noto Sans JP', ui-monospace, SFMono-Regular, Menlo, monospace";
+const DISPLAY_STACK = "'Syne', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif";
 
 const hueFor = (speed: number) => 223 + (speed / MAX_SPEED) * 153; // depth blue → signal orange as speed rises
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -229,7 +238,7 @@ function freshRun() {
 
 /* ============================ component =================================== */
 
-export function TheGroove() {
+export function TheGroove({ copy }: { copy: Dictionary["groove"] }) {
   type Cam = ReturnType<typeof makeCamera>;
   type Pt = NonNullable<ReturnType<Cam["project"]>>;
 
@@ -725,7 +734,7 @@ export function TheGroove() {
   }
 
   function drawHud(g: Ctx, cam: Cam, r: RunState, w: number, h: number) {
-    const mono = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace";
+    const mono = MONO_STACK;
     const bx = 22, by = 32, bw = Math.min(200, w * 0.4);
 
     if (!r.locked) {
@@ -744,21 +753,27 @@ export function TheGroove() {
       g.fillStyle = bf < 0.2 ? "hsl(6,78%,58%)" : "hsla(0,0%,100%,0.7)";
       g.fillRect(bx, by, bw * bf, 4);
       g.fillStyle = "hsla(0,0%,100%,0.42)";
-      g.fillText("BREATH", bx, by - 8);
+      g.fillText(copy.hud.breath, bx, by - 8);
     }
     g.fillStyle = "hsla(0,0%,100%,0.42)";
 
     g.textAlign = "right";
     // Distance stops counting in the ring. That is the point of the ring.
-    g.fillText(r.locked ? `LAP ${r.laps + 1}` : `${Math.floor(r.distance)} M`, w - 22, by - 8);
+    g.fillText(
+      r.locked
+        ? fill(copy.hud.lap, { n: r.laps + 1 })
+        : fill(copy.hud.metres, { n: Math.floor(r.distance) }),
+      w - 22,
+      by - 8,
+    );
     g.fillStyle = `hsla(${cam.hue + 40}, 55%, 80%, ${0.28 + r.shimmer * 0.6})`;
-    g.fillText(`SHIMMER ${Math.round(r.shimmer * 100)}%`, w - 22, by + 8);
+    g.fillText(fill(copy.hud.shimmer, { n: Math.round(r.shimmer * 100) }), w - 22, by + 8);
     g.textAlign = "left";
 
     if (r.breath <= 0 && !r.locked) {
       g.font = `12px ${mono}`;
       g.fillStyle = "hsla(0,0%,100%,0.45)";
-      g.fillText("out of breath. walk it back.", bx, by + 26);
+      g.fillText(copy.hud.outOfBreath, bx, by + 26);
     }
 
     // Stopping has never been presented as an action, so we say it once,
@@ -770,7 +785,7 @@ export function TheGroove() {
       g.textAlign = "center";
       g.font = `13px ${mono}`;
       g.fillStyle = `hsla(0,0%,100%,${fade.toFixed(3)})`;
-      g.fillText("let go", w / 2, h - 42);
+      g.fillText(copy.hud.letGo, w / 2, h - 42);
       g.textAlign = "left";
     }
   }
@@ -781,7 +796,7 @@ export function TheGroove() {
     const r = runRef.current;
     const rev = revealRef.current;
     const { width: w, height: h } = fit(canvas, g);
-    const mono = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace";
+    const mono = MONO_STACK;
 
     g.fillStyle = "#07070a";
     g.fillRect(0, 0, w, h);
@@ -850,9 +865,9 @@ export function TheGroove() {
     g.fillStyle = "hsla(0,0%,100%,0.28)";
     g.font = `10px ${mono}`;
     g.textAlign = "center";
-    g.fillText(`${Math.floor(r.distance)} M`, cx, cy - 6);
-    g.fillText(`${r.cuts.length} STEPS`, cx, cy + 8);
-    if (r.laps > 0) g.fillText(`${r.laps} LAPS`, cx, cy + 22);
+    g.fillText(fill(copy.hud.metres, { n: Math.floor(r.distance) }), cx, cy - 6);
+    g.fillText(fill(copy.hud.steps, { n: r.cuts.length }), cx, cy + 8);
+    if (r.laps > 0) g.fillText(fill(copy.hud.laps, { n: r.laps }), cx, cy + 22);
     g.textAlign = "left";
 
     if (rev.started) {
@@ -874,11 +889,11 @@ export function TheGroove() {
       const fade = Math.min(1, (rev.t - 4.4) / 1.1);
       g.textAlign = "center";
       g.fillStyle = `hsla(40, 24%, 92%, ${0.92 * fade})`;
-      g.font = `700 ${Math.min(26, w * 0.045)}px 'Syne', ui-sans-serif, system-ui, sans-serif`;
-      g.fillText("You were never in a canyon", cx, h - 110);
+      g.font = `700 ${Math.min(26, w * 0.045)}px ${DISPLAY_STACK}`;
+      g.fillText(copy.hud.revealLine1, cx, h - 110);
       g.fillStyle = `hsla(16, 82%, 51%, ${0.78 * fade})`;
       g.font = `600 12px ${mono}`;
-      g.fillText("You cut your own path", cx, h - 84);
+      g.fillText(copy.hud.revealLine2, cx, h - 84);
       g.textAlign = "left";
     }
   }
@@ -919,7 +934,7 @@ export function TheGroove() {
     <div
       className={styles.frame}
       role="application"
-      aria-label="The Groove, a running game. Hold to run."
+      aria-label={copy.frameLabel}
       tabIndex={0}
     >
       <canvas
@@ -933,16 +948,11 @@ export function TheGroove() {
 
       {phase === "title" && (
         <div className={styles.title}>
-          <h1 className={styles.titleHeading}>The Groove</h1>
-          <p className={styles.titleBody}>
-            You are the needle. Hold to run &mdash; every footfall cuts a mark into the
-            floor ahead of you, and it sweeps under before you can look. Speed heats
-            the canyon and spends breath; distance brings the shimmer back. Ease down
-            to a walk for a drink or a yogurt &mdash; nothing gets picked up at a sprint.
-          </p>
-          <p className={styles.titleNote}>sound on</p>
+          <h1 className={styles.titleHeading}>{copy.title}</h1>
+          <p className={styles.titleBody}>{copy.titleBody}</p>
+          <p className={styles.titleNote}>{copy.soundOn}</p>
           <button type="button" onClick={begin} className={styles.button}>
-            Start running
+            {copy.start}
           </button>
         </div>
       )}
@@ -950,14 +960,14 @@ export function TheGroove() {
       {phase === "reveal" && (
         <div className={styles.replay}>
           <button type="button" onClick={begin} className={styles.button}>
-            Cut another side
+            {copy.again}
           </button>
         </div>
       )}
 
       {phase === "running" && !inRing && (
         <div className={styles.hint} aria-hidden="true">
-          HOLD TO RUN
+          {copy.holdToRun}
         </div>
       )}
     </div>

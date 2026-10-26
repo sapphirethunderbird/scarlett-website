@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ArticleMeta } from "@/lib/articles";
 import { formatArticleDate } from "@/lib/articles";
+import type { Dictionary } from "@/lib/i18n";
+import { LOCALE_NAME, localeHref, type Locale } from "@/lib/i18n/config";
 import styles from "./article-layout.module.css";
 
 /**
@@ -8,31 +10,37 @@ import styles from "./article-layout.module.css";
  * project backlink, optional link to the other-language version) and wraps the rendered
  * markdown in a `.prose` container so every piece is styled identically. `children` is
  * the compiled markdown body.
+ *
+ * Chrome copy comes from `locale` (the part of the site you're browsing); the body
+ * and its `lang` attribute come from `meta.lang` (the language the piece is written
+ * in). Those differ when a piece exists in only one language.
  */
 export function ArticleLayout({
   meta,
   counterpart,
+  locale,
+  copy,
   children,
 }: {
   meta: ArticleMeta;
   /** The same piece in the other language, if one exists. */
   counterpart?: Pick<ArticleMeta, "slug" | "lang"> | null;
+  locale: Locale;
+  copy: Dictionary["article"];
   children: React.ReactNode;
 }) {
-  const ja = meta.lang === "ja";
-
   return (
-    <article className={styles.article} lang={ja ? "ja" : undefined}>
+    <article className={styles.article} lang={meta.lang}>
       <header className={`${styles.head} reveal`}>
         <p className="eyebrow">
-          {ja ? "記事" : "writing"} — {formatArticleDate(meta.date, meta.lang)} ·{" "}
+          {copy.eyebrow} — {formatArticleDate(meta.date, meta.lang)} ·{" "}
           {meta.readingTime}
         </p>
         <h1 className={styles.title}>{meta.title}</h1>
         {meta.summary ? <p className={styles.summary}>{meta.summary}</p> : null}
         {meta.project ? (
           <p className={styles.project}>
-            part of{" "}
+            {copy.partOf}{" "}
             {meta.projectHref ? (
               <a href={meta.projectHref} target="_blank" rel="noopener">
                 {meta.project} →
@@ -44,15 +52,17 @@ export function ArticleLayout({
         ) : null}
         {counterpart ? (
           <p className={styles.langSwitch}>
-            {counterpart.lang === "ja" ? (
-              <Link href={`/blog/${counterpart.slug}`} lang="ja" hrefLang="ja">
-                日本語で読む →
-              </Link>
-            ) : (
-              <Link href={`/blog/${counterpart.slug}`} lang="en" hrefLang="en">
-                ← Read in English
-              </Link>
-            )}
+            {/* The counterpart lives in its own language's part of the site, so
+                the chrome switches with the prose rather than lagging behind. */}
+            <Link
+              href={localeHref(`/blog/${counterpart.slug}`, counterpart.lang)}
+              lang={counterpart.lang}
+              hrefLang={counterpart.lang}
+            >
+              {counterpart.lang === "ja"
+                ? "日本語で読む →"
+                : "← Read in English"}
+            </Link>
           </p>
         ) : null}
       </header>
@@ -60,7 +70,7 @@ export function ArticleLayout({
       <div className={`${styles.prose} reveal`}>{children}</div>
 
       <footer className={styles.foot}>
-        <Link href="/blog">{ja ? "← 記事一覧" : "← all writing"}</Link>
+        <Link href={localeHref("/blog", locale)}>{copy.allWriting}</Link>
       </footer>
     </article>
   );
