@@ -201,7 +201,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     },
     detail: {
       tagline:
-        "Designing with a village of 84 people in rural Yamaguchi, and deciding not to build them an app.",
+        "Designing with a community of 84 people in rural Yamaguchi, and deciding not to build them an app.",
       facts: [
         { label: "role", value: "Team: I drove the pivot" },
         { label: "community", value: "84 residents, 39 households" },
