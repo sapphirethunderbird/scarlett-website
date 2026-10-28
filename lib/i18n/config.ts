@@ -3,7 +3,7 @@
  *
  * English lives at the bare paths it always has ("/", "/about", "/projects/…")
  * so every link already out in the world keeps working. Japanese lives under
- * "/ja". `middleware.ts` rewrites the bare paths onto the "/en" segment so a
+ * "/ja". Rewrites in `next.config.mjs` map the bare paths onto the "/en" segment so a
  * single `app/[locale]` tree serves both.
  */
 
