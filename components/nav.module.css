@@ -103,6 +103,18 @@
   max-width: 100%;
 }
 
+/* The language switcher sits in the pill on wide screens. Below the breakpoint
+   the pill has no room for brand + switcher + theme + menu, so it drops out
+   here and the one in the menu sheet takes over. */
+.pillLang {
+  display: flex;
+  flex: none;
+}
+
+@media (max-width: 780px) {
+  .pillLang { display: none; }
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -137,6 +149,10 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  flex: none;
+  /* The Japanese label is wider than "menu"; without this it wraps mid-word
+     and the button grows a second line. */
+  white-space: nowrap;
   background: var(--accent);
   color: var(--void);
   border: none;
@@ -261,4 +277,16 @@
   font-size: 0.78rem;
   color: var(--text-muted);
   letter-spacing: 0.06em;
+}
+
+/* "メニュー" is four full-width glyphs where "menu" is four narrow ones, which
+   is enough to push the pill past a phone's width. Tightened just for Japanese
+   so the English pill keeps its proportions. */
+@media (max-width: 780px) {
+  html[lang="ja"] .menuBtn {
+    padding-left: 13px;
+    padding-right: 13px;
+    font-size: 0.7rem;
+    gap: 8px;
+  }
 }

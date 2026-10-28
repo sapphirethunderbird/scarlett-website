@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getDictionary, resolveLocale } from "@/lib/i18n";
 
 export const runtime = "nodejs";
 
@@ -12,12 +13,23 @@ export async function POST(req: Request) {
     email?: unknown;
     message?: unknown;
     company?: unknown;
+    locale?: unknown;
   };
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    // No body to read a locale out of, so the default language has to do.
+    return NextResponse.json(
+      { error: getDictionary(resolveLocale(undefined)).contactApi.invalidRequest },
+      { status: 400 },
+    );
   }
+
+  // The form posts the locale of the page it was submitted from, so validation
+  // errors come back in the language the sender is actually reading.
+  const t = getDictionary(
+    resolveLocale(typeof body.locale === "string" ? body.locale : undefined),
+  ).contactApi;
 
   const name = typeof body.name === "string" ? body.name.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
@@ -30,17 +42,17 @@ export async function POST(req: Request) {
   }
 
   if (!name) {
-    return NextResponse.json({ error: "Please add your name." }, { status: 400 });
+    return NextResponse.json({ error: t.missingName }, { status: 400 });
   }
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json(
-      { error: "Please enter a valid email address." },
+      { error: t.invalidEmail },
       { status: 400 },
     );
   }
   if (message.length < 10 || message.length > 5000) {
     return NextResponse.json(
-      { error: "Message should be between 10 and 5000 characters." },
+      { error: t.messageLength },
       { status: 400 },
     );
   }
@@ -52,7 +64,7 @@ export async function POST(req: Request) {
   if (!apiKey || !to || !from) {
     console.error("Contact form is not configured (missing env vars).");
     return NextResponse.json(
-      { error: "The contact form isn't set up yet. Please reach out on GitHub." },
+      { error: t.notConfigured },
       { status: 500 },
     );
   }
@@ -69,14 +81,14 @@ export async function POST(req: Request) {
     if (error) {
       console.error("Resend send error:", error);
       return NextResponse.json(
-        { error: "Couldn't send your message. Please try again." },
+        { error: t.sendFailed },
         { status: 500 },
       );
     }
   } catch (err) {
     console.error("Contact form send failed:", err);
     return NextResponse.json(
-      { error: "Couldn't send your message. Please try again." },
+      { error: t.sendFailed },
       { status: 500 },
     );
   }

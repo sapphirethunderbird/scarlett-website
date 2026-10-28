@@ -1,21 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
+import type { Dictionary } from "@/lib/i18n";
 import styles from "./ask-widget.module.css";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const CHIPS = [
-  "What kind of roles is she after?",
-  "Tell me about the Voice-SCaNN pivot.",
-  "What are her strengths?",
-  "What makes her different?",
-];
-
-const FALLBACK =
-  "The live assistant runs through a small backend that isn't connected on this deployment yet. Everything else on the site is real — and so is the assistant when it's wired up. Reach me on GitHub in the meantime.";
-
-export function AskWidget() {
+export function AskWidget({ copy }: { copy: Dictionary["home"]["ask"] }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(false);
@@ -59,7 +50,7 @@ export function AskWidget() {
     } catch {
       setMessages([
         ...nextHistory,
-        { role: "assistant", content: FALLBACK },
+        { role: "assistant", content: copy.fallback },
       ]);
     } finally {
       setBusy(false);
@@ -71,19 +62,15 @@ export function AskWidget() {
   return (
     <section id="ask" className={styles.section}>
       <div className="sec-head reveal">
-        <span className="eyebrow">03: ask</span>
-        <h2>Ask the site about me</h2>
+        <span className="eyebrow">{copy.eyebrow}</span>
+        <h2>{copy.heading}</h2>
       </div>
       <div className={`${styles.shell} reveal`}>
         <div className={styles.top}>
-          <span className={styles.dot} /> live assistant · answers questions about my work and the way I think
+          <span className={styles.dot} /> {copy.status}
         </div>
         <div className={styles.log} ref={logRef} aria-live="polite">
-          <div className={`${styles.msg} ${styles.bot}`}>
-            Hi! I&apos;m an AI that answers questions about Scarlett&apos;s work
-            and the way she thinks. Recruiter, curious, or just poking around?
-            Ask me anything.
-          </div>
+          <div className={`${styles.msg} ${styles.bot}`}>{copy.greeting}</div>
           {messages.map((m, i) => (
             <div
               key={i}
@@ -96,12 +83,12 @@ export function AskWidget() {
           ))}
           {busy && (
             <div className={`${styles.msg} ${styles.bot} ${styles.sys}`}>
-              thinking…
+              {copy.thinking}
             </div>
           )}
         </div>
         <div className={styles.suggest}>
-          {CHIPS.map((c) => (
+          {copy.chips.map((c) => (
             <button
               key={c}
               type="button"
@@ -123,21 +110,18 @@ export function AskWidget() {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Type a question…"
+            placeholder={copy.placeholder}
             autoComplete="off"
-            aria-label="Ask a question"
+            aria-label={copy.inputLabel}
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
           <button type="submit" disabled={busy}>
-            Ask
+            {copy.send}
           </button>
         </form>
       </div>
-      <p className={styles.note}>
-        This assistant is itself one of the projects, an LLM with a system
-        prompt written in Scarlett&apos;s voice.
-      </p>
+      <p className={styles.note}>{copy.note}</p>
     </section>
   );
 }

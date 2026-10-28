@@ -1,11 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import type { Dictionary } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n/config";
 import styles from "./contact-form.module.css";
 
 type Status = "idle" | "sending" | "ok" | "error";
 
-export function ContactForm() {
+export function ContactForm({
+  locale,
+  copy,
+}: {
+  locale: Locale;
+  copy: Dictionary["contactForm"];
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -25,11 +33,11 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message, company }),
+        body: JSON.stringify({ name, email, message, company, locale }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        throw new Error(data.error || copy.genericError);
       }
       setStatus("ok");
       setName("");
@@ -37,14 +45,14 @@ export function ContactForm() {
       setMessage("");
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setError(err instanceof Error ? err.message : copy.genericError);
     }
   }
 
   if (status === "ok") {
     return (
       <p id="contact-form" className={styles.success}>
-        Thanks — your message is on its way. I&apos;ll be in touch.
+        {copy.success}
       </p>
     );
   }
@@ -53,7 +61,7 @@ export function ContactForm() {
     <form id="contact-form" className={styles.form} onSubmit={onSubmit}>
       {/* Honeypot: hidden from users, catches bots. */}
       <div className={styles.hp} aria-hidden="true">
-        <label htmlFor="company">Company</label>
+        <label htmlFor="company">{copy.company}</label>
         <input
           id="company"
           name="company"
@@ -67,7 +75,7 @@ export function ContactForm() {
 
       <div className={styles.row}>
         <label className={styles.field}>
-          <span className={styles.label}>Name</span>
+          <span className={styles.label}>{copy.name}</span>
           <input
             type="text"
             name="name"
@@ -79,7 +87,7 @@ export function ContactForm() {
           />
         </label>
         <label className={styles.field}>
-          <span className={styles.label}>Email</span>
+          <span className={styles.label}>{copy.email}</span>
           <input
             type="email"
             name="email"
@@ -93,7 +101,7 @@ export function ContactForm() {
       </div>
 
       <label className={styles.field}>
-        <span className={styles.label}>Message</span>
+        <span className={styles.label}>{copy.message}</span>
         <textarea
           name="message"
           rows={5}
@@ -112,7 +120,7 @@ export function ContactForm() {
       )}
 
       <button type="submit" className={styles.submit} disabled={sending}>
-        {sending ? "Sending…" : "Send message"}
+        {sending ? copy.sending : copy.send}
       </button>
     </form>
   );

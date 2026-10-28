@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import { imageSize } from "image-size";
+import type { Locale } from "@/lib/i18n/config";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -71,18 +72,30 @@ function readImageSize(
   }
 }
 
+/**
+ * `reading-time` counts whitespace-delimited words, which collapses an entire
+ * Japanese paragraph into a single "word" and makes the estimate meaningless.
+ * Japanese is read at roughly 500 characters a minute, so count characters.
+ */
+function readingTimeFor(content: string, lang: "en" | "ja"): string {
+  if (lang !== "ja") return readingTime(content).text;
+  const chars = content.replace(/\s+/g, "").length;
+  return `約${Math.max(1, Math.round(chars / 500))}分`;
+}
+
 function readArticleFile(filename: string): Article {
   const slug = filename.replace(/\.md$/, "");
   const raw = fs.readFileSync(path.join(ARTICLES_DIR, filename), "utf8");
   const { data, content } = matter(raw);
+  const language = resolveLanguage(slug, data);
 
   return {
-    ...resolveLanguage(slug, data),
+    ...language,
     slug,
     title: String(data.title ?? slug),
     summary: String(data.summary ?? ""),
     date: String(data.date ?? ""),
-    readingTime: readingTime(content).text,
+    readingTime: readingTimeFor(content, language.lang),
     project: data.project ? String(data.project) : undefined,
     projectHref: data.projectHref ? String(data.projectHref) : undefined,
     image: data.image ? String(data.image) : undefined,
@@ -109,10 +122,30 @@ export function getListedArticles(): Article[] {
   return getAllArticles().filter((a) => !a.translationOf);
 }
 
-/** Featured articles (frontmatter `featured: true`), newest first.
+/**
+ * The writing index for one locale: one row per piece, in the reader's
+ * language where that exists.
+ *
+ * Each piece is listed once. For a pair (an original plus its `-jp`
+ * translation) the version matching `locale` wins; where only one language
+ * exists, that one is listed regardless, and the index badges it so a reader
+ * knows before clicking which language they are about to get.
+ */
+export function getArticlesForLocale(locale: Locale): Article[] {
+  const all = getAllArticles();
+  return getListedArticles().map((original) => {
+    if (original.lang === locale) return original;
+    const translation = all.find(
+      (a) => a.translationOf === original.slug && a.lang === locale,
+    );
+    return translation ?? original;
+  });
+}
+
+/** Featured articles (frontmatter `featured: true`), newest first, in `locale`.
  *  Falls back to the single newest article so the rail is never empty. */
-export function getFeaturedArticles(): Article[] {
-  const listed = getListedArticles();
+export function getFeaturedArticles(locale: Locale = "en"): Article[] {
+  const listed = getArticlesForLocale(locale);
   const flagged = listed.filter((a) => a.featured);
   return flagged.length ? flagged : listed.slice(0, 1);
 }

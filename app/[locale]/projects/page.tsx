@@ -2,40 +2,74 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { RevealObserver } from "@/components/reveal-observer";
 import { ProjectCard } from "@/components/home/project-card";
-import { FEATURED_PROJECTS, OTHER_PROJECTS, projectLinks } from "@/lib/projects";
+import { getProjects, projectLinks } from "@/lib/projects";
+import { getDictionary, resolveLocale } from "@/lib/i18n";
+import { OG_LOCALE, languageAlternates, localeHref } from "@/lib/i18n/config";
 import workStyles from "@/components/home/work.module.css";
 import styles from "./projects.module.css";
 
-export const metadata: Metadata = {
-  title: "Projects | Scarlett Whisnant",
-  description:
-    "The full build log: featured work plus the smaller builds, experiments, and writeups around it.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const meta = getDictionary(locale).meta.projects;
 
-export default function ProjectsPage() {
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: localeHref("/projects", locale),
+      languages: languageAlternates("/projects"),
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+      locale: OG_LOCALE[locale],
+    },
+  };
+}
+
+export default async function ProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = resolveLocale((await params).locale);
+  const d = getDictionary(locale).projects;
+  const { featured, other } = getProjects(locale);
+
   return (
     <>
       <RevealObserver />
       <section id="projects">
         <div className="sec-head reveal">
-          <span className="eyebrow">projects</span>
-          <h2>The full build log</h2>
+          <span className="eyebrow">{d.eyebrow}</span>
+          <h2>{d.heading}</h2>
         </div>
 
         <div className={workStyles.projects}>
-          {FEATURED_PROJECTS.map((p) => (
-            <ProjectCard key={p.idx} project={p} />
+          {featured.map((p) => (
+            <ProjectCard
+              key={p.idx}
+              project={p}
+              locale={locale}
+              caseStudyLabel={d.caseStudy}
+            />
           ))}
         </div>
 
-        {OTHER_PROJECTS.length > 0 ? (
+        {other.length > 0 ? (
           <div className={styles.more}>
             <span className={`eyebrow ${styles.moreHead} reveal`}>
-              other projects
+              {d.otherHead}
             </span>
             <div className={styles.list}>
-              {OTHER_PROJECTS.map((p) => {
+              {other.map((p) => {
                 const allLinks = projectLinks(p);
+                const href = localeHref(`/projects/${p.slug}`, locale);
                 return (
                   <div key={p.idx} className={`${styles.row} reveal`}>
                     <div className={styles.meta}>
@@ -45,10 +79,7 @@ export default function ProjectsPage() {
                     <div>
                       <h3 className={styles.title}>
                         {p.detail ? (
-                          <Link
-                            href={`/projects/${p.slug}`}
-                            className={styles.titleLink}
-                          >
+                          <Link href={href} className={styles.titleLink}>
                             {p.title}
                           </Link>
                         ) : (
@@ -66,12 +97,10 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     <div className={styles.links}>
-                      {p.detail ? (
-                        <Link href={`/projects/${p.slug}`}>Case study →</Link>
-                      ) : null}
+                      {p.detail ? <Link href={href}>{d.caseStudy}</Link> : null}
                       {allLinks.map((l) =>
                         l.internal ? (
-                          <Link key={l.href} href={l.href}>
+                          <Link key={l.href} href={localeHref(l.href, locale)}>
                             {l.label}
                           </Link>
                         ) : (

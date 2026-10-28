@@ -1,27 +1,29 @@
+import type { Dictionary } from "@/lib/i18n";
 import styles from "./hero.module.css";
 
-export function Hero() {
+export function Hero({ copy }: { copy: Dictionary["home"]["hero"] }) {
   return (
     <header className={styles.header}>
       <div className={styles.grid}>
         <div className={styles.hero}>
-          <div className="eyebrow">Bilingual builder · EN / 日本語 · Japan</div>
+          <div className="eyebrow">{copy.eyebrow}</div>
           <h1 className={styles.h1}>
-            Why does this problem
+            {copy.h1Line1}
             <br />
-            still exist?
+            {copy.h1Line2}
           </h1>
           <p className={styles.lede}>
-            I build technology <b>from model to interface</b> for the people
-            existing systems forgot to design for.
+            {copy.ledeBefore}
+            <b>{copy.ledeStrong}</b>
+            {copy.ledeAfter}
           </p>
           <p className={styles.who}>
-            Scarlett Whisnant
+            {copy.name}
             <br />
-            Design, AI, and the questions people would rather avoid.
+            {copy.who}
           </p>
           <a href="#contact-form" className={styles.cta}>
-            Get in touch
+            {copy.cta}
           </a>
         </div>
         <div className={styles.markWrap}>
@@ -31,7 +33,7 @@ export function Hero() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/scarlett.jpeg"
-                alt="Scarlett Whisnant"
+                alt={copy.photoAlt}
                 className={styles.photo}
                 width={340}
                 height={340}

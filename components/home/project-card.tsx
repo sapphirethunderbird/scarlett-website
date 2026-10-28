@@ -1,9 +1,18 @@
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
+import { localeHref, type Locale } from "@/lib/i18n/config";
 import styles from "./work.module.css";
 
-export function ProjectCard({ project: p }: { project: Project }) {
-  const href = `/projects/${p.slug}`;
+export function ProjectCard({
+  project: p,
+  locale,
+  caseStudyLabel,
+}: {
+  project: Project;
+  locale: Locale;
+  caseStudyLabel: string;
+}) {
+  const href = localeHref(`/projects/${p.slug}`, locale);
 
   return (
     <article className={`${styles.card} reveal`}>
@@ -33,7 +42,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
         <br />
         {p.detail ? (
           <Link href={href} className={styles.caseLink}>
-            Case study →
+            {caseStudyLabel}
           </Link>
         ) : null}
         {p.link ? (
@@ -43,7 +52,11 @@ export function ProjectCard({ project: p }: { project: Project }) {
         ) : null}
         {p.links?.map((l) =>
           l.internal ? (
-            <Link key={l.href} href={l.href} className={styles.extraLink}>
+            <Link
+              key={l.href}
+              href={localeHref(l.href, locale)}
+              className={styles.extraLink}
+            >
               {l.label}
             </Link>
           ) : (

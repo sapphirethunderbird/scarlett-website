@@ -1,4 +1,15 @@
+import type { Locale } from "@/lib/i18n/config";
+import { PROJECT_COPY } from "./projects/copy";
+
 export type ProjectLink = { href: string; label: string; internal?: boolean };
+
+/**
+ * Project data is single-sourced: slugs, indices, hrefs, and the stack tags
+ * live here once, in English, and `lib/projects/ja.ts` supplies only the prose
+ * for each slug. `getProjects(locale)` merges the two, so a new project needs
+ * no structural duplication and a missing Japanese entry degrades to English
+ * rather than breaking the page.
+ */
 
 /** A short fact shown in the rail at the top of a project page. */
 export type ProjectFact = { label: string; value: string };
@@ -190,7 +201,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     },
     detail: {
       tagline:
-        "Designing with a village of 84 people in rural Yamaguchi, and deciding not to build them an app.",
+        "Designing with a community of 84 people in rural Yamaguchi, and deciding not to build them an app.",
       facts: [
         { label: "role", value: "Team: I drove the pivot" },
         { label: "community", value: "84 residents, 39 households" },
@@ -386,18 +397,83 @@ export const OTHER_PROJECTS: OtherProject[] = [
 /** Featured first, then the rest — the order used for project-to-project navigation. */
 export const ALL_PROJECTS: Project[] = [...FEATURED_PROJECTS, ...OTHER_PROJECTS];
 
-export function getProjectBySlug(slug: string): Project | undefined {
-  return ALL_PROJECTS.find((p) => p.slug === slug);
+/* ---- localization ------------------------------------------------------- */
+
+/**
+ * The translatable half of a project. Everything omitted falls back to the
+ * English above, so a half-finished translation still renders a whole page.
+ *
+ * `linkLabels` is keyed by href rather than position: reordering or adding a
+ * link can't silently mislabel another one.
+ */
+export type ProjectCopy = {
+  title?: string;
+  proof?: string;
+  body?: string;
+  status?: string;
+  linkLabels?: Record<string, string>;
+  detail?: Partial<ProjectDetail>;
+};
+
+function localizeLink(link: ProjectLink, copy: ProjectCopy | undefined): ProjectLink {
+  const label = copy?.linkLabels?.[link.href];
+  return label ? { ...link, label } : link;
 }
 
-/** The projects either side of `slug` in ALL_PROJECTS order, for the page footer. */
-export function getProjectNeighbors(slug: string): {
-  prev?: Project;
-  next?: Project;
+function localize<T extends Project>(project: T, copy: ProjectCopy | undefined): T {
+  if (!copy) return project;
+
+  const detail: ProjectDetail | undefined = project.detail
+    ? {
+        tagline: copy.detail?.tagline ?? project.detail.tagline,
+        facts: copy.detail?.facts ?? project.detail.facts,
+        outcomes: copy.detail?.outcomes ?? project.detail.outcomes,
+        sections: copy.detail?.sections ?? project.detail.sections,
+      }
+    : undefined;
+
+  return {
+    ...project,
+    title: copy.title ?? project.title,
+    proof: copy.proof ?? project.proof,
+    body: copy.body ?? project.body,
+    status: copy.status ?? project.status,
+    ...(project.link ? { link: localizeLink(project.link, copy) } : {}),
+    ...(project.links
+      ? { links: project.links.map((l) => localizeLink(l, copy)) }
+      : {}),
+    ...(detail ? { detail } : {}),
+  };
+}
+
+/** Every project in `locale`, split the way the pages consume them. */
+export function getProjects(locale: Locale): {
+  featured: FeaturedProject[];
+  other: OtherProject[];
+  all: Project[];
 } {
-  const i = ALL_PROJECTS.findIndex((p) => p.slug === slug);
+  const copy = locale === "en" ? undefined : PROJECT_COPY[locale];
+  const featured = FEATURED_PROJECTS.map((p) => localize(p, copy?.[p.slug]));
+  const other = OTHER_PROJECTS.map((p) => localize(p, copy?.[p.slug]));
+  return { featured, other, all: [...featured, ...other] };
+}
+
+export function getProjectBySlug(
+  slug: string,
+  locale: Locale = "en",
+): Project | undefined {
+  return getProjects(locale).all.find((p) => p.slug === slug);
+}
+
+/** The projects either side of `slug`, in display order, for the page footer. */
+export function getProjectNeighbors(
+  slug: string,
+  locale: Locale = "en",
+): { prev?: Project; next?: Project } {
+  const all = getProjects(locale).all;
+  const i = all.findIndex((p) => p.slug === slug);
   if (i === -1) return {};
-  return { prev: ALL_PROJECTS[i - 1], next: ALL_PROJECTS[i + 1] };
+  return { prev: all[i - 1], next: all[i + 1] };
 }
 
 /** Every link on a project, with the primary `link` first. */

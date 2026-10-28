@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
+// Design-sync previews render prop-free, so this variant pins the English copy
+// rather than taking a locale.
+import { en } from "@/lib/i18n/dictionaries/en";
 import styles from "./nav.module.css";
 
 const LINKS = [
@@ -38,7 +41,7 @@ export function Nav() {
             </a>
           ))}
         </div>
-        <ThemeToggle />
+        <ThemeToggle copy={en.theme} />
       </div>
     </nav>
   );

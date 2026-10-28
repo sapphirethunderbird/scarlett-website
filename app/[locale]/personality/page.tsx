@@ -3,21 +3,48 @@ import Link from "next/link";
 import { RevealObserver } from "@/components/reveal-observer";
 import { TRACKS } from "@/lib/music/tracks";
 import { resolveTracks } from "@/lib/music/itunes";
-import { JOURNEY } from "@/lib/japan/journey";
+import { getJourney, type JourneyChapter } from "@/lib/japan/journey";
 import { gradientFor } from "@/lib/cover-gradient";
+import { fill, getDictionary, resolveLocale } from "@/lib/i18n";
+import { OG_LOCALE, languageAlternates, localeHref } from "@/lib/i18n/config";
 import styles from "./personality.module.css";
 
-export const metadata: Metadata = {
-  title: "Off-screen | Scarlett Whisnant",
-  description:
-    "The parts that you never got to see: the music keeps me going, the kilometers that clear my head, my adventures through Japan.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = resolveLocale((await params).locale);
+  const meta = getDictionary(locale).meta.personality;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: localeHref("/personality", locale),
+      languages: languageAlternates("/personality"),
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+      locale: OG_LOCALE[locale],
+    },
+  };
+}
 
 // Each doorway leaks live data from its room (SQLite, iTunes cache), so
 // render per request; every read degrades gracefully to static art.
 export const dynamic = "force-dynamic";
 
-export default async function PersonalityHub() {
+export default async function PersonalityHub({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = resolveLocale((await params).locale);
+  const d = getDictionary(locale).personality.hub;
+  const journey = getJourney(locale);
   const tracks = await resolveTracks(TRACKS.slice(0, 3));
   const artworks = tracks.map((t) => ({
     url: t.artworkUrl,
@@ -27,29 +54,22 @@ export default async function PersonalityHub() {
     {
       idx: "/01",
       href: "/personality/music",
-      title: "Music",
-      proof: "a tribute to the iTunes UI I never got to experience",
-      body: "Cover Flow, resurrected, album art tilting in 3D, a click away from a thirty-second preview. The songs are mine; the interface is a love letter.",
-      tease: `${TRACKS.length} tracks on the shelf`,
+      ...d.rooms.music,
+      tease: fill(d.rooms.music.tease, { count: TRACKS.length }),
       visual: <CoverFanVisual artworks={artworks} />,
     },
     {
       idx: "/02",
       href: "/personality/running",
-      title: "Running",
-      proof: "a game about the habit that keeps this site shipping",
-      body: "You are the needle. Hold to run, cut a mark with every footfall, and watch it sweep under before you can look. You only see the side you made once you let go.",
-      tease: "canvas, web audio, no assets",
+      ...d.rooms.running,
       visual: <GrooveRingsVisual />,
     },
     {
       idx: "/03",
       href: "/personality/japan",
-      title: "Japan",
-      proof: "a country that takes a lifetime to explore, told by scroll",
-      body: "Not a camera roll. One continuous journey through the places that rearranged me, chapter by chapter, as far as you're willing to scroll.",
-      tease: `${JOURNEY.length} stops down the line`,
-      visual: <FilmStripVisual />,
+      ...d.rooms.japan,
+      tease: fill(d.rooms.japan.tease, { count: journey.length }),
+      visual: <FilmStripVisual journey={journey} />,
     },
   ];
 
@@ -58,30 +78,30 @@ export default async function PersonalityHub() {
       <RevealObserver />
       <section id="off-screen">
         <div className="sec-head reveal">
-          <span className="eyebrow">off-screen</span>
-          <h2>The parts that don&apos;t ship</h2>
+          <span className="eyebrow">{d.eyebrow}</span>
+          <h2>{d.heading}</h2>
         </div>
 
-        <p className={`${styles.manifesto} reveal`}>
-          Code is maybe a third of the story. This wing of the site holds the
-          rest, and because I can&apos;t help myself, each room is also a
-          build: an exhibit about me, engineered like everything else here.
-        </p>
+        <p className={`${styles.manifesto} reveal`}>{d.manifesto}</p>
 
         <div className={styles.doorways}>
-          {doorways.map((d) => (
-            <Link key={d.idx} href={d.href} className={`${styles.card} reveal`}>
+          {doorways.map((door) => (
+            <Link
+              key={door.idx}
+              href={localeHref(door.href, locale)}
+              className={`${styles.card} reveal`}
+            >
               <div className={styles.visual} aria-hidden="true">
-                {d.visual}
+                {door.visual}
               </div>
               <div className={styles.cardBody}>
-                <div className={styles.idx}>{d.idx}</div>
-                <h3 className={styles.cardTitle}>{d.title}</h3>
-                <div className={styles.proof}>{d.proof}</div>
-                <p className={styles.body}>{d.body}</p>
-                <span className={styles.tease}>{d.tease}</span>
+                <div className={styles.idx}>{door.idx}</div>
+                <h3 className={styles.cardTitle}>{door.title}</h3>
+                <div className={styles.proof}>{door.proof}</div>
+                <p className={styles.body}>{door.body}</p>
+                <span className={styles.tease}>{door.tease}</span>
                 <span className={styles.enter}>
-                  enter <span aria-hidden="true">→</span>
+                  {d.enter} <span aria-hidden="true">→</span>
                 </span>
               </div>
             </Link>
@@ -159,8 +179,8 @@ function GrooveRingsVisual() {
   );
 }
 
-function FilmStripVisual() {
-  const frames = JOURNEY.slice(0, 3).map(
+function FilmStripVisual({ journey }: { journey: JourneyChapter[] }) {
+  const frames = journey.slice(0, 3).map(
     (ch) => ch.photos[0]?.gradientKey ?? ch.id,
   );
   return (
