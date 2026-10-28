@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Syne, Inter, JetBrains_Mono, Noto_Sans_JP } from "next/font/google";
+import { Syne, Inter, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -32,22 +32,17 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   display: "swap",
 });
-// Latin faces above carry no CJK glyphs, so Japanese falls through to this one
-// per character (see the html[lang="ja"] stacks in globals.css). Not preloaded:
-// the subset is large and only one locale needs it.
-const notoSansJP = Noto_Sans_JP({
-  weight: ["400", "500", "700"],
-  variable: "--font-noto-jp",
-  display: "swap",
-  preload: false,
-});
+// Latin faces above carry no CJK glyphs, so Japanese falls through to Noto Sans
+// JP per character (see the html[lang="ja"] stacks in globals.css). It's loaded
+// from Google's stylesheet at runtime, Japanese pages only — not next/font:
+// Google sometimes serves its ~120 CJK subsets as /l/font?kit=…&skey=… URLs,
+// whose "&" breaks Turbopack's font import, so the server build fails at random.
+const NOTO_SANS_JP_CSS =
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap";
 
-const FONT_VARS = [
-  syne.variable,
-  inter.variable,
-  jetbrainsMono.variable,
-  notoSansJP.variable,
-].join(" ");
+const FONT_VARS = [syne.variable, inter.variable, jetbrainsMono.variable].join(
+  " ",
+);
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -104,6 +99,17 @@ export default async function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlashScript }} />
+        {locale === "ja" && (
+          <>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link
+              rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossOrigin="anonymous"
+            />
+            <link rel="stylesheet" href={NOTO_SANS_JP_CSS} />
+          </>
+        )}
       </head>
       <body>
         <Nav locale={locale} nav={d.nav} theme={d.theme} />
