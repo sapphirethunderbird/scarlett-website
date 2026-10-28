@@ -4,6 +4,8 @@ summary: "時には、飛び込んで泳ぐしかない。それが一番の学�
 date: "2026-08-17"
 project: ""
 projectHref: ""
+image: "/articles/thermodymanics-as-liberal-arts-major/cover.jpeg"
+imageAlt: "熱力学の授業ノート"
 featured: false
 ---
 
