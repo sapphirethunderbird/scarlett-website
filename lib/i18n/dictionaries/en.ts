@@ -273,7 +273,7 @@ export const en = {
           title: "Japan",
           proof: "a country that takes a lifetime to explore, told by scroll",
           body:
-            "Not a camera roll. One continuous journey through the places that rearranged me, chapter by chapter, as far as you're willing to scroll.",
+            "Not a camera roll. One continuous journey through the places that rearranged me, chapter by chapter, as far as you're willing to scroll. (Work in progress)",
           /** `{count}` is the number of journey chapters. */
           tease: "{count} stops down the line",
         },
