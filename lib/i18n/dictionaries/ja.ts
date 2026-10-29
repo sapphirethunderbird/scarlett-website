@@ -47,7 +47,7 @@ export const ja: Dictionary = {
     japan: {
       title: "日本 | Scarlett Whisnant",
       description:
-        "電車で覚えた国の話を、スクロールで。私をつくり変えた場所をひと続きの旅としてたどります。",
+        "準備中",
     },
   },
 
