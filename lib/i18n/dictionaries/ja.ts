@@ -16,9 +16,9 @@ export const ja: Dictionary = {
     about: {
       title: "自己紹介 | Scarlett Whisnant",
       description:
-        "長い版。11歳で日本語ゼロのまま来日し、国立大学を一般入試で受け、既存の仕組みに取り残された人のために技術をつくるようになるまで。",
+        "長い版。11歳で日本語ゼロのまま来日し、国立大学を日本人と同じ入試で受け、既存の仕組みに取り残された人のために技術をつくるようになるまで。",
       ogDescription:
-        "長い版。11歳で来日し、国立大学を一般入試で受け、取り残された人のためにつくる理由。",
+        "長い版。11歳で来日し、国立大学を日本人と同じ入試で受け、取り残された人のためにつくる理由。",
     },
     projects: {
       title: "プロジェクト | Scarlett Whisnant",
@@ -32,12 +32,12 @@ export const ja: Dictionary = {
     personality: {
       title: "画面の外 | Scarlett Whisnant",
       description:
-        "まだ見せていなかった部分。前に進ませてくれる音楽、頭をほどいてくれる距離、日本をめぐった記録。",
+        "まだ見せていなかった部分。前に進ませてくれる曲、頭をほどいてくれる距離、日本をめぐった記録（準備中）。",
     },
     music: {
       title: "音楽 | Scarlett Whisnant",
       description:
-        "昔のiTunesのUIへのオマージュとしてつくったCover Flow。何度も戻ってくる曲を、30秒の試聴つきで。",
+        "昔のiTunesのUIへのオマージュとしてつくったCover Flow。何度も戻ってくる曲を、30秒の試聴つきで。"
     },
     running: {
       title: "The Groove | Scarlett Whisnant",
@@ -47,7 +47,7 @@ export const ja: Dictionary = {
     japan: {
       title: "日本 | Scarlett Whisnant",
       description:
-        "電車で覚えた国の話を、スクロールで。私をつくり変えた場所をひと続きの旅としてたどります。",
+        "準備中",
     },
   },
 
@@ -83,7 +83,7 @@ export const ja: Dictionary = {
   },
 
   footer: {
-    tagline: "モデルからインターフェースまで、自分の手で",
+    tagline: "モデルからインターフェースまで",
   },
 
   home: {

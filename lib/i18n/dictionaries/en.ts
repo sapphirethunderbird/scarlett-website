@@ -46,7 +46,7 @@ export const en = {
     japan: {
       title: "Japan | Scarlett Whisnant",
       description:
-        "A country learned by train, told by scroll. One continuous journey through the places that rearranged me.",
+        "Coming Soon",
     },
   },
 
