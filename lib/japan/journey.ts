@@ -131,7 +131,7 @@ export const JOURNEY: JourneyChapter[] = [
       {
         gradientKey: "miyajima-tide",
         alt: "The great torii at Miyajima at high tide",
-        caption: "miyajima, tide coming in",
+        caption: "Coming Soon",
         depth: 0.5,
       },
       {
