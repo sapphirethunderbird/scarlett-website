@@ -224,7 +224,9 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         {
           heading: "Why the transportation app was the wrong answer",
           body: [
-            "Coming Soon",
+            "When we asked residents about what they felt the problems in their community were, we got a mix of answers. One problem that seemed to be major was transportation. You're lucky if you get one bus or train in an hour, and good luck getting to the bus stop or station because it's a long ways in between. Most residents travel by car or kei-truck, and most of the community is elderly. This means that a good number of them will end up surrendering their drivers license in the next 10 years because they are no longer able to drive safely. This leaves them with two options, deal with the lack of transportation, or more likely, move into a nursing home.",
+            "However, when we asked around, transportation wasn't the only issue that came up. abandoned houses are becoming a problem too. Many of them are not maintained by anyone and are literally collapsing in on themselves. They become homes for feral animals, and pose a major fire hazard to the community.",
+            "We could have solved the transportation problem with an app. It would be very straightforward to make one and propose it. But can we really ignore the other problems the community has? What gives us the right to prioritize their problems and solve them? This is why we moved away from the transportation app and chose a community-design approach to the problems instead.",
           ],
         },
         {
