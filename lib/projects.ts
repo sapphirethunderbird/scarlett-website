@@ -232,7 +232,8 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         {
           heading: "What we did instead",
           body: [
-            "Coming Soon",
+            "Instead of building an app, we went for the root issue: residents aren't talking to each other about community issues. We proposed a system that takes issues that residents brought up and stores them in a community database. Then at a regular town hall-like meeting, residents discuss these issues. The conversations here are also recorded into the database.",
+            "This gives the community the opportunity to come together regularly and share issues. This gives the entire community an idea of what issues there are, and allows for the community to prioritize instead of focusing on multiple issues at once without a goal.",
           ],
         },
         {
