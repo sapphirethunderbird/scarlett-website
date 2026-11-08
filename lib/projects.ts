@@ -239,7 +239,8 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         {
           heading: "Outcome",
           body: [
-            "Coming Soon",
+            "When we first presented our idea to the community, they were genuinely confused. They came in expecting a concrete solution to a specific problem, and we gave them a framework for more than one community issue. They weren't wrong to feel this way, and I think we could have done better to explain to them why this solution was more impactful than a transportation app.",
+            "Despite this, when we presented our idea at the DXPBL Final Presentation, our team managed to win the Best DXPBL Award. Our idea was praised for going beyond a mere digitization project, and for applying Digital Transformation in a community design context."
           ],
         },
       ],
