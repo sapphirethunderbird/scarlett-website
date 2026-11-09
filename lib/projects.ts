@@ -280,21 +280,19 @@ export const OTHER_PROJECTS: OtherProject[] = [
         {
           heading: "What it is",
           body: [
-            "Coming Soon",
-            "Coming Soon",
+            "A reimagined communication board for those with developmental disabilities (autism, ADHD, etc). The communication board is made up of both pre-installed and user-made cards with text to speech to help with conveying needs. The freehand drawing side allows users to draw to get their point across instead of solely relying on pre-defined cards.",
           ],
         },
         {
           heading: "Testing it with the people it was for",
           body: [
-            "Coming Soon",
-            "Coming Soon",
+            "It seemed like a good idea. However, when we tested it with a real user, they said that they probably wouldn't use it. Not because it's a terrible app, but rather they didn't need the features it provided. They could communicate their needs well enough on their own without cards or drawing.",
           ],
         },
         {
           heading: "What I'm carrying forward",
           body: [
-            "Coming Soon",
+            "You can have a really interesting concept, or make something you think is really useful for someone. However, you only know user needs by actually talking with users and having them show you what they need.",
           ],
         },
       ],
