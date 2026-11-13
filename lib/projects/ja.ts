@@ -24,7 +24,7 @@ export const PROJECT_COPY_JA: Record<string, ProjectCopy> = {
         "誰も読まないシラバスを、学生が実際に動かせるスキルマップに変える。",
       facts: [
         { label: "役割", value: "個人: 構想からMVPまで" },
-        { label: "状態", value: "Vercelで公開中" },
+        { label: "状態", value: "バージョン2.0開発中" },
         { label: "範囲", value: "シラバス解析、スキル抽出、UI" },
       ],
       outcomes: [

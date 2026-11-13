@@ -79,7 +79,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         "Turning the syllabus nobody reads into a skills map students can actually act on.",
       facts: [
         { label: "role", value: "Solo: concept to mvp" },
-        { label: "status", value: "Deployed on Vercel" },
+        { label: "status", value: "Redesigning v2" },
         { label: "scope", value: "Syllabus parsing, skill extraction, UI" },
       ],
       outcomes: [
