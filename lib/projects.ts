@@ -91,28 +91,36 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         {
           heading: "The job I thought I had",
           body: [
-            "I started out meaning to redesign my university's course management system. It was clunky, the information architecture fought the user, and a redesign was the obvious deliverable. That framing lasted exactly as long as it took me to ask someone else about it.",
+            "I started out meaning to redesign my university's course management system. It was clunky, the process for the user to find information itself fought the user, and a redesign was the obvious deliverable. That framing lasted exactly as long as it took me to ask someone else about it.",
+            "In a day I created a rough version of the user interface, mostly focused on course management. It had information such as how many courses a student had in a week and the distribution of lectures and groupwork. I showed a video of what I made to students and professors immediately after for feedback.",
           ],
         },
         {
           heading: "What the feedback changed",
           body: [
-            "I talked to students and professors instead of going straight to Figma. What came back was not \"this interface is hard to use.\" It was that the system holds information nobody gets value from. Syllabi are written once, filed, and never read again; even though they already describe, in detail, what a student will be able to do by the end of a course.",
-            "So I stopped redesigning the container and started working on what was inside it. The question became: can the syllabus that already exists be turned into something a student can put on a job application?",
+            "What came back wasn't \"Cool project!\", or \"this interface is hard to use.\" What I got was actually a nudge from my professor.",
+            "The system holds already holds valuable information nobody actually gets value from. Syllabi are written once, uploaded, and almost never read by students; even though they already describe, in detail, what a student will be able to do by the end of a course.",
+            "If we were able to take this information, and maybe put it into a network, then maybe we could see something interesting about that student. This is what got me started on the next version.",
           ],
         },
         {
           heading: "How it works",
           body: [
-            "Shirabase takes unstructured syllabus text and extracts the concrete, market-readable skills buried in it, then presents them as something actionable rather than administrative.",
-            "The analysis runs locally in the browser. That was a deliberate constraint: course material and a student's academic record are not data I want to hold, and a tool that uploads nothing is a tool that is much easier for an institution to say yes to.",
-            "It is deployed on Vercel with analytics wired in, so I can see what people actually do with it rather than guessing.",
+            "Shirabase takes unstructured syllabus text and extracts the concrete, market-readable skills buried in it, then presents them as something students can use for job hunting.",
+            "The analysis runs locally in the browser. That takes nothing from the user and makes it more approachable than a cloud service.",
+            "It is currently deployed on Vercel with analytics wired in, so I how much people actually use it rather than guessing.",
+          ],
+        },
+        {
+          heading: "How people reacted to the new version",
+          body: [
+            "When I presented it at the end of the Trajective Informatics course, people were genuinely impressed. When they saw it, they said that they really wanted to use something like it outside of job hunting, maybe to find out what they would gain from a course before they committed. Multiple students said that they wanted this to take over the university Course Management System. It ended up winning the \"Best Potential Award\" from my professor.",
           ],
         },
         {
           heading: "What I took from it",
           body: [
-            "The useful lesson was not technical. The brief I was given described a symptom, and the redesign everyone expected would have shipped a prettier version of a thing nobody needed. Asking first cost me a few conversations and changed the entire project.",
+            "What I took from this was similar to what I took from the Voice-SCaNN project. I had an assumption, but when I tested it I found something completely different. The moral of this story is to iterate and ask for feedback as early and often as possible. You will toss out a good number of ideas, but this will actually get you to something even better.",
           ],
         },
       ],
