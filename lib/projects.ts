@@ -98,8 +98,8 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
         {
           heading: "What the feedback changed",
           body: [
-            "What came back wasn't \"Cool project!\", or \"this interface is hard to use.\" What I got was actually a nudge from my professor.",
-            "The system holds already holds valuable information nobody actually gets value from. Syllabi are written once, uploaded, and almost never read by students; even though they already describe, in detail, what a student will be able to do by the end of a course.",
+            "What came back wasn't \"Cool project!\" or \"this interface is hard to use.\" What I got was actually a nudge from my professor.",
+            "The system already holds valuable information nobody actually gets value from. Syllabi are written once, uploaded, and almost never read by students; even though they already describe, in detail, what a student will be able to do by the end of a course.",
             "If we were able to take this information, and maybe put it into a network, then maybe we could see something interesting about that student. This is what got me started on the next version.",
           ],
         },
